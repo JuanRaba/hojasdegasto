@@ -1,0 +1,8 @@
+<%= @expensesSheet.owner.email %>
+
+<% @expenses.each do |expense| %>
+  <p>-
+  <%= expense.user.email %>
+  <%= expense.amount %>
+  </p>
+<% end %>
