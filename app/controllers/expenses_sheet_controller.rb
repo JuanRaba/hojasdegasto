@@ -2,7 +2,7 @@ class ExpensesSheetController < ApplicationController
   before_action :authenticate_user!
   def index
     @expensesSheets = current_user.expensesSheets
-    @newExpensesSheet = current_user.expensesSheets.build(owner: current_user)
+    @newExpensesSheet = ExpensesSheet.new
   end
 
   def show

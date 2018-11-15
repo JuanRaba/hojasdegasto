@@ -3,4 +3,22 @@ class ExpensesSheet < ApplicationRecord
   has_many :expenses, dependent: :destroy
   has_many :asociations, dependent: :destroy
   has_many :users, through: :asociations
+
+  def asociationLevel
+    self.asociations.count()
+  end
+  def totalSpent
+    self.expenses.pluck("amount").sum()
+  end
+  def userSpent(user)
+    self.expenses.where(user: user).pluck("amount").sum()
+  end
+
+  def userBalance(user)
+    # gaste 50 somos 2 y el otro puso:
+    # 0: 50 - (50/2) = +25
+    # 50: 50 - (100/2) = 0
+    # 100: 50 - (150/2) = -25
+    userSpent(user) - (totalSpent / asociationLevel)
+  end
 end

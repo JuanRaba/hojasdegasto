@@ -7,4 +7,11 @@ class User < ApplicationRecord
   has_many :asociations, dependent: :destroy
   has_many :expensesSheets, through: :asociations
   has_many :ownedExpensesSheets, class_name: 'ExpensesSheet', foreign_key: :user_id, dependent: :destroy
+
+  def userBalance
+    self.expensesSheets.inject(0) {|sum, n| sum + n.userBalance(self) }
+  end
+  def userSpent
+    self.expensesSheets.inject(0) {|sum, n| sum + n.userSpent(self) }
+  end
 end

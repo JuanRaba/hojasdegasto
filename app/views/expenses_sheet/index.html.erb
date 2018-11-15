@@ -1,9 +1,14 @@
 <h1>ExpensesSheet#index</h1>
 <p>Find me in app/views/expenses_sheet/index.html.erb</p>
 
-<% @expensesSheets[0...-1].each do |sheet| %>
+userBalance<%= current_user.userBalance %>
+userSpent<%= current_user.userSpent %>
+
+<% @expensesSheets.each do |sheet| %>
   <p>-
   <%= sheet.owner.email %>
+  userSpent<%= sheet.userSpent(current_user) %>
+  userBalance<%= sheet.userBalance(current_user) %>
   <%= link_to "link", expenses_sheet_path(sheet) %>
   </p>
 <% end %>
