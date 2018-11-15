@@ -1,9 +1,8 @@
-class CreateExpenses < ActiveRecord::Migration[5.2]
+class CreateAsociations < ActiveRecord::Migration[5.2]
   def change
-    create_table :expenses do |t|
+    create_table :asociations do |t|
       t.references :user, foreign_key: true
       t.references :expenses_sheet, foreign_key: true
-      t.integer :amount
 
       t.timestamps
     end

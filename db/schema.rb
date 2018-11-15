@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_15_153524) do
+ActiveRecord::Schema.define(version: 2018_11_15_162256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "asociations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "expenses_sheet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expenses_sheet_id"], name: "index_asociations_on_expenses_sheet_id"
+    t.index ["user_id"], name: "index_asociations_on_user_id"
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "expenses_sheet_id"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expenses_sheet_id"], name: "index_expenses_on_expenses_sheet_id"
+    t.index ["user_id"], name: "index_expenses_on_user_id"
+  end
 
   create_table "expenses_sheets", force: :cascade do |t|
     t.bigint "user_id"
@@ -34,5 +53,9 @@ ActiveRecord::Schema.define(version: 2018_11_15_153524) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "asociations", "expenses_sheets"
+  add_foreign_key "asociations", "users"
+  add_foreign_key "expenses", "expenses_sheets"
+  add_foreign_key "expenses", "users"
   add_foreign_key "expenses_sheets", "users"
 end
