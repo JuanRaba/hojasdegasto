@@ -5,3 +5,22 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Expense.destroy_all
+Asociation.destroy_all
+ExpensesSheet.destroy_all
+u = User.first
+e = ExpensesSheet.create!(
+  owner: u
+  )
+a = Asociation.create!(
+  user: u,
+  expensesSheet: e
+  )
+10.times do |j|
+  gasto = e.expenses.build(
+    amount: j,
+    user: u,
+    expensesSheet: e
+  )
+  gasto.save!
+end

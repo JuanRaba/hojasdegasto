@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :expenses
+  has_many :expenses, dependent: :destroy
+  has_many :asociations, dependent: :destroy
   has_many :expensesSheets, through: :asociations
+  has_many :ownedExpensesSheets, class_name: 'ExpensesSheet', foreign_key: :user_id, dependent: :destroy
 end
