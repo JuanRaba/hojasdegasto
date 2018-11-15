@@ -6,3 +6,12 @@
   <%= expense.amount %>
   </p>
 <% end %>
+
+<%= form_with model: @newExpensesSheet, url: expenses_sheet_expenses_path(@expensesSheet), method: :post, local: true do |f| %>
+  <div class="card col-md-6">
+    
+    <%= f.label :amount %>
+    <%= f.number_field :amount %>
+    <%= f.submit "Entrar", class: "btn btn-primary" %>
+  </div>
+<% end %>

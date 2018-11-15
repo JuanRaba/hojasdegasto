@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :expenses_sheet, only: [:index, :show, :create]
+  resources :expenses_sheet, only: [:index, :show, :create] do
+    resources :expenses, only: [:create]
+  end
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }

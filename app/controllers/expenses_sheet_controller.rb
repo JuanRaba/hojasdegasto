@@ -8,6 +8,7 @@ class ExpensesSheetController < ApplicationController
   def show
     @expensesSheet = ExpensesSheet.find(params[:id])
     @expenses = @expensesSheet.expenses
+    @newExpense = Expense.new
   end
 
   def create
