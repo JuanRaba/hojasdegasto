@@ -11,8 +11,9 @@ class AsociationsController < ApplicationController
         format.html { redirect_to @expensesSheet, notice: 'newAsociation was successfully created.' }
         format.json { render :show, status: :created, location: @expensesSheet }
       else
-        #fix this
-        format.html { render :new }
+        # improve error parsing this
+        # @newAsociation.errors.details == {:user_id=>[{:error=>:taken, :value=>2}]}
+        format.html { redirect_to @expensesSheet, alert: "newAsociation was not created. #{@newAsociation.errors,messages}" }
         format.json { render json: @newAsociation.errors, status: :unprocessable_entity }
       end
     end
