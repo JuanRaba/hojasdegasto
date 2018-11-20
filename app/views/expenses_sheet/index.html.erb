@@ -1,21 +1,44 @@
 <h1>ExpensesSheet#index</h1>
-<p>Find me in app/views/expenses_sheet/index.html.erb</p>
-
-userBalance<%= current_user.userBalance %>
-userSpent<%= current_user.userSpent %>
-
-<% @expensesSheets.each do |sheet| %>
-  <p>-
-  <%= sheet.owner.email %>
-  userSpent<%= sheet.userSpent(current_user) %>
-  userBalance<%= sheet.userBalance(current_user) %>
-  <%= link_to "link", expenses_sheet_path(sheet) %>
-  </p>
-<% end %>
 
 
-<%= form_with model: @newExpensesSheet, url: expenses_sheet_index_path, method: :post, local: true do |f| %>
-  <div class="card col-md-6">
-    <%= f.submit "Entrar", class: "btn btn-primary" %>
-  </div>
-<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Id</th>
+      <th scope="col">userSpent</th>
+      <th scope="col">userBalance</th>
+      <th scope="col">#asociation</th>
+      <th scope="col">owner</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @expensesSheets.each_with_index do |sheet,index| %>
+    <tr>
+      <th scope="row"><%="#{index}"%></th>
+      <td><%= link_to "#{sheet.id}", expenses_sheet_path(sheet) %></td>
+      <td><%= sheet.userSpent(current_user) %></td>
+      <td><%= sheet.userBalance(current_user) %></td>
+      <td><%= sheet.asociationLevel %></td>
+      <td><%= sheet.owner.email %></td>
+    </tr>    
+  <% end %>
+    <tr>
+      <th scope="row"><%="Total"%></th>
+      <td><%= @expensesSheets.count() %></td>
+      <td><%= current_user.userSpent %></td>
+      <td><%= current_user.userBalance %></td>
+      <td></td>      
+      <td></td>
+    </tr>
+
+    <tr>
+    <%= form_with model: @newExpensesSheet, url: expenses_sheet_index_path, method: :post, local: true do |f| %>
+      <td><%= f.submit "Crear", class: "btn btn-primary" %></td>
+      <td><%= f.text_field :name %></td>
+    <% end %>
+    </tr>
+  </tbody>
+</table>
+

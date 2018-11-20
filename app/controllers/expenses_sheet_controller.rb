@@ -21,7 +21,7 @@ class ExpensesSheetController < ApplicationController
           user: current_user,
           expensesSheet: @newExpensesSheet
         )
-        format.html { redirect_to @newExpensesSheet, notice: 'newExpensesSheet was successfully created.' }
+        format.html { redirect_to root_path, notice: 'newExpensesSheet was successfully created.' }
         format.json { render :show, status: :created, location: @newExpensesSheet }
       else
         format.html { render :new }
