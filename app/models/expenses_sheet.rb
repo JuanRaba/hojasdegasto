@@ -5,7 +5,7 @@ class ExpensesSheet < ApplicationRecord
   has_many :users, through: :asociations
 
   def asociationLevel
-    self.asociations.count()
+    self.asociations.count().to_f
   end
   def totalSpent
     self.expenses.pluck("amount").sum()

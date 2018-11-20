@@ -19,3 +19,13 @@ nivel de asociacion: <%= @expensesSheet.asociationLevel%>
     <%= f.submit "Entrar", class: "btn btn-primary" %>
   </div>
 <% end %>
+
+<%= form_with model: @newAsociation, url: expenses_sheet_asociations_path(@expensesSheet), method: :post, local: true do |f| %>
+  <div class="card col-md-6">
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autocomplete: "email" %>
+    </div>
+    <%= f.submit "Entrar", class: "btn btn-primary" %>
+  </div>
+<% end %>
