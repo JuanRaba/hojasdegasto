@@ -1,7 +1,7 @@
 class ExpensesController < ApplicationController
   def create
     @newExpense = current_user.expenses.build(
-      amount: params[:amount],
+      amount: params[:amount].to_i,
       expenses_sheet_id: params[:expenses_sheet_id]
       )
     respond_to do |format|

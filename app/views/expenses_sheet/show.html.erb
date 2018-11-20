@@ -1,41 +1,77 @@
-<%= @expensesSheet.owner.email %>
-total gastado: <%= @expensesSheet.totalSpent %>
-gastado por el usuario: <%= @expensesSheet.userSpent(current_user) %>
-balance del usuario: <%= @expensesSheet.userBalance(current_user) %>
-nivel de asociacion: <%= @expensesSheet.asociationLevel%>
 
-<% @expenses.each do |expense| %>
-  <p>-
-  <%= expense.user.email %>
-  <%= expense.amount %>
-  </p>
-<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">userSpent</th>
+      <th scope="col">userBalance</th>
+      <th scope="col">#asociation</th>
+      <th scope="col">owner</th>
+    </tr>
+  </thead>
+    <tr>
+      <td><%= @expensesSheet.id %></td>
+      <td><%= @expensesSheet.userSpent(current_user) %></td>
+      <td><%= @expensesSheet.userBalance(current_user) %></td>
+      <td><%= @expensesSheet.asociationLevel %></td>
+      <td><%= @expensesSheet.owner.email %></td>
+    </tr> 
+  </tbody>
+</table>
 
-Asociations
-<% @expensesSheet.asociations.each do |expense| %>
-  <p>-
-  <%= expense.user.email %>
-  </p>
-<% end %>
 
-<%= form_with model: @newExpensesSheet, url: expenses_sheet_expenses_path(@expensesSheet), method: :post, local: true do |f| %>
-  <div class="card col-md-6">
-
-    <%= f.label :amount %>
-    <%= f.number_field :amount %>
-    <%= f.submit "Entrar", class: "btn btn-primary" %>
-  </div>
-<% end %>
-
-#this is solo for owner
-<% if current_user == @expensesSheet.owner %>
-  <%= form_with model: @newAsociation, url: expenses_sheet_asociations_path(@expensesSheet), method: :post, local: true do |f| %>
-    <div class="card col-md-6">
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autocomplete: "email" %>
-      </div>
-      <%= f.submit "Entrar", class: "btn btn-primary" %>
-    </div>
+<div class="col-md-6">
+  Hoja compratida por:
+  <ul>
+  <% @expensesSheet.asociations.each do |expense| %>
+    <li><%= expense.user.email %></li>
   <% end %>
-<% end %>
+  </ul>
+</div>
+<div class="col-md-6">
+  <% if current_user == @expensesSheet.owner %>
+    <%= form_with model: @newAsociation, url: expenses_sheet_asociations_path(@expensesSheet), method: :post, local: true do |f| %>
+      <div class="field">
+        Añadir colaborador por email 
+        <%= f.email_field :email, autocomplete: "email" %>
+        <%= f.submit "Entrar", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Id</th>
+      <th scope="col">Amount</th>
+      <th scope="col">owner</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <%= form_with model: @newExpensesSheet, url: expenses_sheet_expenses_path(@expensesSheet), method: :post, local: true do |f| %>
+      <td></td>
+      <td><%= f.submit "Crear", class: "btn btn-primary" %></td>
+      <td><%= f.number_field :amount %></td>
+    <% end %>
+    </tr>
+  <% @expenses.each_with_index do |expense,index| %>
+    <tr>
+      <th scope="row"><%="#{index}"%></th>
+      <td><%= expense.id %></td>
+      <td><%= expense.amount %></td>
+      <td><%= expense.user.email %></td>
+    </tr>    
+  <% end %>
+    <tr>
+      <th scope="row"><%="Total"%></th>
+      <td><%= @expensesSheet.expenses.count() %></td>
+      <td><%= @expensesSheet.totalSpent %></td>
+      <td></td>      
+      <td></td>
+    </tr>
+  </tbody>
+</table>
