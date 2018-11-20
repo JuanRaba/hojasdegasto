@@ -11,6 +11,13 @@ nivel de asociacion: <%= @expensesSheet.asociationLevel%>
   </p>
 <% end %>
 
+Asociations
+<% @expensesSheet.asociations.each do |expense| %>
+  <p>-
+  <%= expense.user.email %>
+  </p>
+<% end %>
+
 <%= form_with model: @newExpensesSheet, url: expenses_sheet_expenses_path(@expensesSheet), method: :post, local: true do |f| %>
   <div class="card col-md-6">
 
@@ -20,12 +27,15 @@ nivel de asociacion: <%= @expensesSheet.asociationLevel%>
   </div>
 <% end %>
 
-<%= form_with model: @newAsociation, url: expenses_sheet_asociations_path(@expensesSheet), method: :post, local: true do |f| %>
-  <div class="card col-md-6">
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autocomplete: "email" %>
+#this is solo for owner
+<% if current_user == @expensesSheet.owner %>
+  <%= form_with model: @newAsociation, url: expenses_sheet_asociations_path(@expensesSheet), method: :post, local: true do |f| %>
+    <div class="card col-md-6">
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autocomplete: "email" %>
+      </div>
+      <%= f.submit "Entrar", class: "btn btn-primary" %>
     </div>
-    <%= f.submit "Entrar", class: "btn btn-primary" %>
-  </div>
+  <% end %>
 <% end %>
