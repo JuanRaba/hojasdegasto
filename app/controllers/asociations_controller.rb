@@ -13,7 +13,7 @@ class AsociationsController < ApplicationController
       else
         # improve error parsing this
         # @newAsociation.errors.details == {:user_id=>[{:error=>:taken, :value=>2}]}
-        format.html { redirect_to @expensesSheet, alert: "newAsociation was not created. #{@newAsociation.errors,messages}" }
+        format.html { redirect_to @expensesSheet, alert: "newAsociation was not created. #{@newAsociation.errors.messages}" }
         format.json { render json: @newAsociation.errors, status: :unprocessable_entity }
       end
     end
