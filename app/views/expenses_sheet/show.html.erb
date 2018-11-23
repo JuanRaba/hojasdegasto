@@ -45,7 +45,7 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Id</th>
+      <th scope="col">Name</th>
       <th scope="col">Amount</th>
       <th scope="col">owner</th>
     </tr>
@@ -53,15 +53,15 @@
   <tbody>
     <tr>
     <%= form_with model: @newExpensesSheet, url: expenses_sheet_expenses_path(@expensesSheet), method: :post, local: true do |f| %>
-      <td></td>
       <td><%= f.submit "Crear", class: "btn btn-primary" %></td>
+      <td><%= f.text_field :name %></td>
       <td><%= f.number_field :amount %></td>
     <% end %>
     </tr>
   <% @expenses.each_with_index do |expense,index| %>
     <tr>
       <th scope="row"><%="#{index+1}"%></th>
-      <td><%= expense.id %></td>
+      <td><%= expense.show_name %></td>
       <td><%= expense.amount %></td>
       <td><%= expense.user.email %></td>
     </tr>    

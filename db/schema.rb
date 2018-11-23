@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_23_145011) do
+ActiveRecord::Schema.define(version: 2018_11_23_151242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2018_11_23_145011) do
     t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["expenses_sheet_id"], name: "index_expenses_on_expenses_sheet_id"
     t.index ["user_id"], name: "index_expenses_on_user_id"
   end

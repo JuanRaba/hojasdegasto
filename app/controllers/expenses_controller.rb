@@ -2,6 +2,7 @@ class ExpensesController < ApplicationController
   def create
     @newExpense = current_user.expenses.build(
       amount: params[:amount].to_i,
+      name: params[:name],
       expenses_sheet_id: params[:expenses_sheet_id]
       )
     respond_to do |format|
