@@ -2,7 +2,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Id</th>
+      <th scope="col">Name</th>
       <th scope="col">userSpent</th>
       <th scope="col">userBalance</th>
       <th scope="col">#asociation</th>
@@ -10,7 +10,7 @@
     </tr>
   </thead>
     <tr>
-      <td><%= @expensesSheet.id %></td>
+      <td><%= @expensesSheet.name %></td>
       <td><%= @expensesSheet.userSpent(current_user) %></td>
       <td><%= @expensesSheet.userBalance(current_user) %></td>
       <td><%= @expensesSheet.asociationLevel %></td>
@@ -60,7 +60,7 @@
     </tr>
   <% @expenses.each_with_index do |expense,index| %>
     <tr>
-      <th scope="row"><%="#{index}"%></th>
+      <th scope="row"><%="#{index+1}"%></th>
       <td><%= expense.id %></td>
       <td><%= expense.amount %></td>
       <td><%= expense.user.email %></td>

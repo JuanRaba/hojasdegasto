@@ -4,6 +4,8 @@ class ExpensesSheet < ApplicationRecord
   has_many :asociations, dependent: :destroy
   has_many :users, through: :asociations
 
+  validates :name, presence: { message: "must be given please" }
+
   def asociationLevel
     self.asociations.count()
   end
