@@ -1,10 +1,19 @@
 class ExpensesController < ApplicationController
   def create
-    @newExpense = current_user.expenses.build(
-      amount: params[:amount].to_i,
-      name: params[:name],
-      expenses_sheet_id: params[:expenses_sheet_id]
-      )
+    byebug
+    if params[:owner] == '1'
+      @newExpense = current_user.expenses.build(
+        amount: params[:amount].to_i,
+        name: params[:name],
+        expenses_sheet_id: params[:expenses_sheet_id]
+        )
+    else
+      @newExpense = Expense.new(
+        amount: params[:amount].to_i,
+        name: params[:name],
+        expenses_sheet_id: params[:expenses_sheet_id]
+        )
+    end
     respond_to do |format|
       if @newExpense.save
         format.html { redirect_to expenses_sheet_url(@newExpense.expensesSheet), notice: 'newExpense was successfully created.' }

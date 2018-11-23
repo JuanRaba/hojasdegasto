@@ -56,6 +56,7 @@
       <td><%= f.submit "Crear", class: "btn btn-primary" %></td>
       <td><%= f.text_field :name %></td>
       <td><%= f.number_field :amount %></td>
+      <td><%= f.check_box :owner, {checked: true} %> uncheck to plan expense</td>
     <% end %>
     </tr>
   <% @expenses.each_with_index do |expense,index| %>
@@ -63,7 +64,7 @@
       <th scope="row"><%="#{index+1}"%></th>
       <td><%= expense.show_name %></td>
       <td><%= expense.amount %></td>
-      <td><%= expense.user.email %></td>
+      <td><%= expense.user.try(:email) %></td>
     </tr>    
   <% end %>
     <tr>
