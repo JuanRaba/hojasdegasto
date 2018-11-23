@@ -9,6 +9,9 @@ class ExpensesSheet < ApplicationRecord
   def asociationLevel
     self.asociations.count()
   end
+  def totalUnpaid
+    self.expenses.where(user: nil).pluck("amount").sum()
+  end
   def totalSpent
     self.expenses.pluck("amount").sum()
   end

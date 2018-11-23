@@ -5,6 +5,7 @@
       <th scope="col">Name</th>
       <th scope="col">userSpent</th>
       <th scope="col">userBalance</th>
+      <th scope="col">totalUnpaid</th>
       <th scope="col">#asociation</th>
       <th scope="col">owner</th>
     </tr>
@@ -13,6 +14,7 @@
       <td><%= @expensesSheet.name %></td>
       <td><%= @expensesSheet.userSpent(current_user) %></td>
       <td><%= @expensesSheet.userBalance(current_user) %></td>
+      <td><%= @expensesSheet.totalUnpaid %></td>
       <td><%= @expensesSheet.asociationLevel %></td>
       <td><%= @expensesSheet.owner.email %></td>
     </tr> 
@@ -64,7 +66,14 @@
       <th scope="row"><%="#{index+1}"%></th>
       <td><%= expense.show_name %></td>
       <td><%= expense.amount %></td>
-      <td><%= expense.user.try(:email) %></td>
+      <td>
+        <% if expense.user.present? %>
+          <%= expense.user.email %>
+        <% else %>
+          <%= link_to 'Claim',expenses_sheet_expense_claim_path(@expensesSheet, expense), class: "btn btn-primary" %>
+        <% end %>
+      </td>
+      
     </tr>    
   <% end %>
     <tr>
