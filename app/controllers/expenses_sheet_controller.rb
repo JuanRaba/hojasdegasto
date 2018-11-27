@@ -1,5 +1,6 @@
 class ExpensesSheetController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
   def index
     @expensesSheets = current_user.expensesSheets
     @newExpensesSheet = ExpensesSheet.new
@@ -7,9 +8,13 @@ class ExpensesSheetController < ApplicationController
 
   def show
     @expensesSheet = ExpensesSheet.find(params[:id])
-    @expenses = @expensesSheet.expenses
-    @newExpense = Expense.new
-    @newAsociation = Asociation.new
+    if @expensesSheet.users.where(id: current_user.id).present? or current_user.expensesSheets.where(id: params[:id]).present?
+      @expenses = @expensesSheet.expenses
+      @newExpense = Expense.new
+      @newAsociation = Asociation.new
+    else
+      redirect_to root_path, alert: "GTFO you are not colaborator of that sheet, WONT SHOW IT"
+    end
   end
 
   def create

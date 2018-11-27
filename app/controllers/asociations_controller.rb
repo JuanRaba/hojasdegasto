@@ -1,10 +1,18 @@
 class AsociationsController < ApplicationController
+  authorize_resource
+
   def create
     @expensesSheet = ExpensesSheet.find(params[:expenses_sheet_id])
-    @newAsociation = Asociation.new(
-      user: User.find_by_email(params[:asociation][:email]),
-      expensesSheet: @expensesSheet
-    )
+    
+    if @expensesSheet.owner == current_user
+      @newAsociation = Asociation.new(
+        user: User.find_by_email(params[:asociation][:email]),
+        expensesSheet: @expensesSheet
+      )
+    else
+      redirect_to root_path, alert: "GTFO you are not owner"
+      return
+    end
 
     respond_to do |format|
       if @newAsociation.save

@@ -34,7 +34,7 @@
   <% if current_user == @expensesSheet.owner %>
     <%= form_with model: @newAsociation, url: expenses_sheet_asociations_path(@expensesSheet), method: :post, local: true do |f| %>
       <div class="field">
-        Añadir colaborador por email 
+        <p>Añadir colaborador por email:</p>
         <%= f.email_field :email, autocomplete: "email" %>
         <%= f.submit "Entrar", class: "btn btn-primary" %>
       </div>

@@ -1,4 +1,5 @@
 class ExpensesController < ApplicationController
+  authorize_resource
   def create
     if params[:owner] == '1'
       @newExpense = current_user.expenses.build(
@@ -13,6 +14,15 @@ class ExpensesController < ApplicationController
         expenses_sheet_id: params[:expenses_sheet_id]
         )
     end
+
+    if current_user.expensesSheets.where(id: @newExpense.expensesSheet.id).present?
+      
+    else
+      redirect_to root_path, alert: "GTFO you are not colaborator of that sheet, WONT CREATE EXPENSE FOR U"
+      return
+    end
+
+
     respond_to do |format|
       if @newExpense.save
         format.html { redirect_to expenses_sheet_url(@newExpense.expensesSheet), notice: 'newExpense was successfully created.' }
@@ -26,7 +36,18 @@ class ExpensesController < ApplicationController
 
   def claim
     @expense = Expense.find(params[:expense_id])
-    @expense.user = current_user
+    if current_user.expensesSheets.where(id: @expense.expensesSheet.id).present?
+      
+    else
+      redirect_to root_path, alert: "GTFO you are not colaborator of that sheet, WONT CLAIM EXPENSE FOR U"
+      return
+    end
+    if @expense.user.nil?
+      @expense.user = current_user
+    else
+      redirect_to root_path, alert: "GTFO EXPENSE PAYED, WONT CLAIM EXPENSE FOR U"
+      return
+    end
     respond_to do |format|
       if @expense.save
         format.html { redirect_to expenses_sheet_url(@expense.expensesSheet), notice: 'expense was successfully claimed.' }

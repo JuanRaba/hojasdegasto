@@ -17,7 +17,7 @@
   <% @expensesSheets.each_with_index do |sheet,index| %>
     <tr>
       <th scope="row"><%="#{index+1}"%></th>
-      <td><%= link_to "#{sheet.name}", expenses_sheet_path(sheet) %></td>
+      <td><%= link_to "#{sheet.name}", sheet %></td>
       <td><%= sheet.userSpent(current_user) %></td>
       <td><%= sheet.userBalance(current_user) %></td>
       <td><%= sheet.asociationLevel %></td>
