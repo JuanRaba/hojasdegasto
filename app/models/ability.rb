@@ -11,31 +11,19 @@ class Ability
     #     can :read, :all
     #   end
     can :create, ExpensesSheet # index show create
-    
-    # @expensesSheet.users.where(id: current_user.id).present?
-    # or 
-    # current_user.expensesSheets.where(id: params[:id]).present?
     can :read, ExpensesSheet do |expensesSheet|
       expensesSheet.users.where(id: user.id).present?
     end
 
-    # current_user.expensesSheets.where(id: params[:id]).present?
     can :create, Expense do |expense|
       expense.expensesSheet.users.where(id: user.id).present?
     end
-    # current_user.expensesSheets.where(id: params[:id]).present?
-    # and?
-    # @expense.user.nil?
     can :claim, Expense do |expense|
-      expense.user.nil?
+      expense.user.nil? and expense.expensesSheet.users.where(id: user.id).present?
     end
 
-    # @expensesSheet.owner == current_user
     can :create, Asociation do |asociation|
       asociation.expensesSheet.owner == user
-    end
-    can :read, Asociation do |asociation|
-      asociation.expensesSheet.users.where(id: user.id).present?
     end
 
     # The first argument to `can` is the action you are giving the user

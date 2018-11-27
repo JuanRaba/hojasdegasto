@@ -8,13 +8,9 @@ class ExpensesSheetController < ApplicationController
 
   def show
     @expensesSheet = ExpensesSheet.find(params[:id])
-    if @expensesSheet.users.where(id: current_user.id).present? or current_user.expensesSheets.where(id: params[:id]).present?
-      @expenses = @expensesSheet.expenses
-      @newExpense = Expense.new
-      @newAsociation = Asociation.new
-    else
-      redirect_to root_path, alert: "GTFO you are not colaborator of that sheet, WONT SHOW IT"
-    end
+    @expenses = @expensesSheet.expenses
+    @newExpense = Expense.new
+    @newAsociation = Asociation.new
   end
 
   def create
