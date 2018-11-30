@@ -54,7 +54,7 @@
   </thead>
   <tbody>
     <tr>
-    <%= form_with model: @newExpensesSheet, url: expenses_sheet_expenses_path(@expensesSheet), method: :post, local: true do |f| %>
+    <%= form_with model: @newExpense, url: expenses_sheet_expenses_path(@expensesSheet, @newExpense), method: :post, local: true do |f| %>
       <td><%= f.submit "Crear", class: "btn btn-primary" %></td>
       <td><%= f.text_field :name %></td>
       <td><%= f.number_field :amount %></td>
