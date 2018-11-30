@@ -1,21 +1,13 @@
 class ExpensesController < ApplicationController
   
   def create
-    if params[:owner] == '1'
-      @newExpense = current_user.expenses.build(
-        amount: params[:amount].to_i,
-        name: params[:name],
-        expenses_sheet_id: params[:expenses_sheet_id]
-        )
-    else
-      @newExpense = Expense.new(
-        amount: params[:amount].to_i,
-        name: params[:name],
-        expenses_sheet_id: params[:expenses_sheet_id]
-        )
-    end
+    @newExpense = Expense.new()
+    @newExpense.amount = params[:expense][:amount].to_i
+    @newExpense.name = params[:expense][:name]
+    @newExpense.expenses_sheet_id = params[:expenses_sheet_id]
+    @newExpense.user = current_user if params[:expense][:owner] == '1'
+      
     authorize! :create, @newExpense
-
     respond_to do |format|
       if @newExpense.save
         format.html { redirect_to expenses_sheet_url(@newExpense.expensesSheet), notice: 'newExpense was successfully created.' }
@@ -40,5 +32,10 @@ class ExpensesController < ApplicationController
         format.json { render json: @expense.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  private
+  def expense_params
+    params.require(:expense).permit(:amount, :name, :owner)
   end
 end
