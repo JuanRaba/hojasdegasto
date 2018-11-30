@@ -1,6 +1,6 @@
 class ExpensesSheetController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
+  authorize_resource
   def index
     @expensesSheets = current_user.expensesSheets
     @newExpensesSheet = ExpensesSheet.new

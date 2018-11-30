@@ -12,9 +12,9 @@
   </thead>
     <tr>
       <td><%= @expensesSheet.name %></td>
-      <td><%= @expensesSheet.userSpent(current_user) %></td>
-      <td><%= @expensesSheet.userBalance(current_user) %></td>
-      <td><%= @expensesSheet.totalUnpaid %></td>
+      <td><%= number_to_currency(@expensesSheet.userSpent(current_user)) %></td>
+      <td><%= number_to_currency(@expensesSheet.userBalance(current_user)) %></td>
+      <td><%= number_to_currency(@expensesSheet.totalUnpaid) %></td>
       <td><%= @expensesSheet.asociationLevel %></td>
       <td><%= @expensesSheet.owner.email %></td>
     </tr> 
@@ -31,7 +31,7 @@
   </ul>
 </div>
 <div class="col-md-6">
-  <!--% if current_user == @expensesSheet.owner %-->
+  <% if current_user == @expensesSheet.owner %>
     <%= form_with model: @newAsociation, url: expenses_sheet_asociations_path(@expensesSheet), method: :post, local: true do |f| %>
       <div class="field">
         <p>Añadir colaborador por email:</p>
@@ -39,7 +39,7 @@
         <%= f.submit "Entrar", class: "btn btn-primary" %>
       </div>
     <% end %>
-  <!--% end %-->
+  <% end %>
 </div>
 
 
@@ -65,7 +65,7 @@
     <tr>
       <th scope="row"><%="#{index+1}"%></th>
       <td><%= expense.show_name %></td>
-      <td><%= expense.amount %></td>
+      <td><%= number_to_currency(expense.amount) %></td>
       <td>
         <% if expense.user.present? %>
           <%= expense.user.email %>
@@ -79,7 +79,7 @@
     <tr>
       <th scope="row"><%="Total"%></th>
       <td><%= @expensesSheet.expenses.count() %></td>
-      <td><%= @expensesSheet.totalSpent %></td>
+      <td><%= number_to_currency(@expensesSheet.totalSpent) %></td>
       <td></td>      
       <td></td>
     </tr>

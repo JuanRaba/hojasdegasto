@@ -18,8 +18,8 @@
     <tr>
       <th scope="row"><%="#{index+1}"%></th>
       <td><%= link_to "#{sheet.name}", sheet %></td>
-      <td><%= sheet.userSpent(current_user) %></td>
-      <td><%= sheet.userBalance(current_user) %></td>
+      <td><%= number_to_currency(sheet.userSpent(current_user)) %></td>
+      <td><%= number_to_currency(sheet.userBalance(current_user)) %></td>
       <td><%= sheet.asociationLevel %></td>
       <td><%= sheet.owner.email %></td>
     </tr>    
@@ -27,8 +27,8 @@
     <tr>
       <th scope="row"><%="Total"%></th>
       <td><%= @expensesSheets.count() %></td>
-      <td><%= current_user.userSpent %></td>
-      <td><%= current_user.userBalance %></td>
+      <td><%= number_to_currency(current_user.userSpent) %></td>
+      <td><%= number_to_currency(current_user.userBalance) %></td>
       <td></td>      
       <td></td>
     </tr>
