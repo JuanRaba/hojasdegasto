@@ -63,7 +63,10 @@
     </tr>
   <% @expenses.each_with_index do |expense,index| %>
     <tr>
-      <th scope="row"><%="#{index+1}"%></th>
+      <th scope="row">
+        <%="#{index+1}"%>
+        <%= link_to 'x', expenses_sheet_expense_path(@expensesSheet, expense), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+      </th>
       <td><%= expense.show_name %></td>
       <td><%= number_to_currency(expense.amount) %></td>
       <td>

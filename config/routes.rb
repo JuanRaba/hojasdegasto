@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :expenses_sheet, only: [:index, :show, :create] do
-    resources :expenses, only: [:create] do
+    resources :expenses, only: [:create, :destroy] do
       get 'claim' #maybe unnecesary anidation, unless want to change expense to another sheet
     end
     resources :asociations, only: [:create]

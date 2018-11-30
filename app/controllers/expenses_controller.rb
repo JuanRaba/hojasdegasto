@@ -22,7 +22,7 @@ class ExpensesController < ApplicationController
   def claim
     @expense = Expense.find(params[:expense_id])
     authorize! :claim, @expense
-
+    @expense.user = current_user
     respond_to do |format|
       if @expense.save
         format.html { redirect_to expenses_sheet_url(@expense.expensesSheet), notice: 'expense was successfully claimed.' }
@@ -34,7 +34,18 @@ class ExpensesController < ApplicationController
     end
   end
 
+  def destroy
+    @expense = Expense.find(params[:id])
+    authorize! :destroy, @expense
+    @expense.destroy
+    respond_to do |format|
+      format.html { redirect_to expenses_sheet_url(params[:expenses_sheet_id]), notice: 'Expense was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
+
   def expense_params
     params.require(:expense).permit(:amount, :name, :owner)
   end

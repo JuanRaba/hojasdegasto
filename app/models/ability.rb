@@ -21,6 +21,9 @@ class Ability
     can :claim, Expense do |expense|
       expense.user.nil? and expense.expensesSheet.users.where(id: user.id).present?
     end
+    can :destroy, Expense do |expense|
+      expense.expensesSheet.users.where(id: user.id).present?
+    end
 
     can :create, Asociation do |asociation|
       asociation.expensesSheet.owner == user
