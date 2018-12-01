@@ -26,4 +26,8 @@ class ExpensesSheet < ApplicationRecord
     # 100: 50 - (150/2) = -25
     userSpent(user) - (totalSpent / asociationLevel.to_f)
   end
+
+  def is_user_asociated(user)
+    self.users.where(id: user.id).present?  
+  end
 end
