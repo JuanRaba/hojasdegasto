@@ -8,6 +8,7 @@ class ExpensesSheetController < ApplicationController
 
   def show
     @expensesSheet = ExpensesSheet.find(params[:id])
+    authorize! :read, @expensesSheet
     @expenses = @expensesSheet.expenses
     @newExpense = Expense.new
     @newAsociation = Asociation.new
@@ -31,4 +32,14 @@ class ExpensesSheetController < ApplicationController
     end
   end
 
+
+  def destroy
+    @expensesSheet = ExpensesSheet.find(params[:id])
+    authorize! :destroy, @expensesSheet
+    @expensesSheet.destroy
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: 'ExpensesSheet was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
 end

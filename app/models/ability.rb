@@ -14,6 +14,9 @@ class Ability
     can :read, ExpensesSheet do |expensesSheet|
       expensesSheet.is_user_asociated(user)
     end
+    can :destroy, ExpensesSheet do |expensesSheet|
+      expensesSheet.owner == user
+    end
 
     can :create, Expense do |expense|
       expense.expensesSheet.is_user_asociated(user)
@@ -22,6 +25,7 @@ class Ability
       expense.user.nil? and expense.expensesSheet.is_user_asociated(user)
     end
     can :destroy, Expense do |expense|
+      # add expensesSheet policy? so owner or asociated can delete expenses
       expense.expensesSheet.is_user_asociated(user)
     end
 
