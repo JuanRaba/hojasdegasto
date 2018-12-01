@@ -1,6 +1,10 @@
 class Ability
   include CanCan::Ability
 
+  def is_user_asociated(expensesSheet, user)
+    expensesSheet.users.where(id: user.id).present?  
+  end
+
   def initialize(user)
     # Define abilities for the passed in user here. For example:
     #
@@ -12,17 +16,17 @@ class Ability
     #   end
     can :create, ExpensesSheet # index show create
     can :read, ExpensesSheet do |expensesSheet|
-      expensesSheet.users.where(id: user.id).present?
+      is_user_asociated(expensesSheet, user)
     end
 
     can :create, Expense do |expense|
-      expense.expensesSheet.users.where(id: user.id).present?
+      is_user_asociated( expense.expensesSheet, user )
     end
     can :claim, Expense do |expense|
-      expense.user.nil? and expense.expensesSheet.users.where(id: user.id).present?
+      expense.user.nil? and is_user_asociated( expense.expensesSheet, user )
     end
     can :destroy, Expense do |expense|
-      expense.expensesSheet.users.where(id: user.id).present?
+      is_user_asociated( expense.expensesSheet, user )
     end
 
     can :create, Asociation do |asociation|
