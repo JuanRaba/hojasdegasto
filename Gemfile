@@ -7,6 +7,7 @@ ruby '2.4.1'
 gem 'rails', '~> 5.2.1'
 gem 'devise', git: 'https://github.com/plataformatec/devise.git'
 gem 'cancancan'
+gem 'sendgrid-ruby'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
