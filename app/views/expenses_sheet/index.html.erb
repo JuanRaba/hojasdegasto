@@ -20,7 +20,7 @@
         <%="#{index+1}"%>
         <%= link_to 'x', sheet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
       </th>
-      <td><%= link_to "#{sheet.name}", sheet %></td>
+      <td><%= link_to "#{sheet.name}", sheet, 'data-turbolinks': false %></td>
       <td><%= number_to_currency(sheet.userSpent(current_user)) %></td>
       <td><%= number_to_currency(sheet.userBalance(current_user)) %></td>
       <td><%= sheet.asociationLevel %></td>

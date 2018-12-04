@@ -1,90 +1,64 @@
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">userSpent</th>
-      <th scope="col">userBalance</th>
-      <th scope="col">totalUnpaid</th>
-      <th scope="col">#asociation</th>
-      <th scope="col">owner</th>
-    </tr>
-  </thead>
-    <tr>
-      <td><%= @expensesSheet.name %></td>
-      <td><%= number_to_currency(@expensesSheet.userSpent(current_user)) %></td>
-      <td><%= number_to_currency(@expensesSheet.userBalance(current_user)) %></td>
-      <td><%= number_to_currency(@expensesSheet.totalUnpaid) %></td>
-      <td><%= @expensesSheet.asociationLevel %></td>
-      <td><%= @expensesSheet.owner.email %></td>
-    </tr> 
-  </tbody>
-</table>
 
 
-<div class="col-md-6">
-  Hoja compratida por:
-  <ul>
-  <% @expensesSheet.asociations.each do |expense| %>
-    <li><%= expense.user.email %></li>
-  <% end %>
-  </ul>
+
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Bootstrap Sidebar</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <p>Dummy Heading</p>
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="#">Home 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="#">Page 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Portfolio</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+        </ul>
+    </nav>
+  <div class="row">
+    <div class="col-md-6">
+      <%= render 'balanceTable' %>
+    </div>
+    <div class="col-md-6">
+      <%= render 'asociationsTable' %>
+    </div>
+    <div class="col-md-6">
+      <%= render 'expensesTable' %>
+    </div>
+  </div>
 </div>
-<div class="col-md-6">
-  <% if current_user == @expensesSheet.owner %>
-    <%= form_with model: @newAsociation, url: expenses_sheet_asociations_path(@expensesSheet), method: :post, local: true do |f| %>
-      <div class="field">
-        <p>Añadir colaborador por email:</p>
-        <%= f.email_field :email, autocomplete: "email" %>
-        <%= f.submit "Añadir", class: "btn btn-primary" %>
-      </div>
-    <% end %>
-  <% end %>
-</div>
-
-
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Amount</th>
-      <th scope="col">owner</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-    <%= form_with model: @newExpense, url: expenses_sheet_expenses_path(@expensesSheet, @newExpense), method: :post, local: true do |f| %>
-      <td><%= f.submit "Crear", class: "btn btn-primary" %></td>
-      <td><%= f.text_field :name %></td>
-      <td><%= f.number_field :amount %></td>
-      <td><%= f.check_box :owner, {checked: true} %> uncheck to plan expense</td>
-    <% end %>
-    </tr>
-  <% @expenses.each_with_index do |expense,index| %>
-    <tr>
-      <th scope="row">
-        <%="#{index+1}"%>
-        <%= link_to 'x', expenses_sheet_expense_path(@expensesSheet, expense), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-      </th>
-      <td><%= expense.show_name %></td>
-      <td><%= number_to_currency(expense.amount) %></td>
-      <td>
-        <% if expense.user.present? %>
-          <%= expense.user.email %>
-        <% else %>
-          <%= link_to 'Claim',expenses_sheet_expense_claim_path(@expensesSheet, expense), class: "btn btn-primary" %>
-        <% end %>
-      </td>
-      
-    </tr>    
-  <% end %>
-    <tr>
-      <th scope="row"><%="Total"%></th>
-      <td><%= @expensesSheet.expenses.count() %></td>
-      <td><%= number_to_currency(@expensesSheet.totalSpent) %></td>
-      <td></td>      
-      <td></td>
-    </tr>
-  </tbody>
-</table>

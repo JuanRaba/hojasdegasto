@@ -1,0 +1,21 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">userSpent</th>
+      <th scope="col">userBalance</th>
+      <th scope="col">totalUnpaid</th>
+      <th scope="col">#asociation</th>
+      <th scope="col">owner</th>
+    </tr>
+  </thead>
+    <tr>
+      <td><%= @expensesSheet.name %></td>
+      <td><%= number_to_currency(@expensesSheet.userSpent(current_user)) %></td>
+      <td><%= number_to_currency(@expensesSheet.userBalance(current_user)) %></td>
+      <td><%= number_to_currency(@expensesSheet.totalUnpaid) %></td>
+      <td><%= @expensesSheet.asociationLevel %></td>
+      <td><%= @expensesSheet.owner.email %></td>
+    </tr> 
+  </tbody>
+</table>
