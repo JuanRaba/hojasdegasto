@@ -15,20 +15,24 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' if params[:action] == "index"%>
-    <% if alert.present? %>
-      <div class="alert alert-warning" role="alert">
-        <%= alert %>
+    <% if (params[:controller] == 'expenses_sheet' and params[:action] != "index") %>
+      <%= yield %>
+    <%else%>
+      <%= render 'shared/navbar'%>
+      <% if alert.present? %>
+        <div class="alert alert-warning" role="alert">
+          <%= alert %>
+        </div>
+      <% end %>
+
+      <% if notice.present? %>
+        <div class="alert alert-success" role="alert">
+          <%= notice %>
+        </div>
+      <% end %>
+      <div class="container">
+        <%= yield %>  
       </div>
-    <% end %>
-
-    <% if notice.present? %>
-      <div class="alert alert-success" role="alert">
-        <%= notice %>
-      </div>
-    <% end %>
-
-    <%= yield %>
-
+    <%end%>
   </body>
 </html>

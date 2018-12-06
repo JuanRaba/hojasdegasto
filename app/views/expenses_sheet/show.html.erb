@@ -1,72 +1,29 @@
 <div class="wrapper">
-    <!-- Sidebar -->
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <a class="navbar-brand" href="<%= root_path %>"><h3>Inicio</h3></a>
-        </div>
-
-        <ul class="list-unstyled components">
-            <li>
-              <a id="showTableButton" onclick="$('.hideable').hide(); $('#expensesTable').show();">
-                <%= @expensesSheet.name %>
-              </a>
-            </li>
-            <li class="active">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Resumen:</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li>
-                        <a href="#">userSpent: <%= number_to_currency(@expensesSheet.userSpent(current_user)) %></a>
-                    </li>
-                    <li>
-                        <a href="#">userBalance: <%= number_to_currency(@expensesSheet.userBalance(current_user)) %></a>
-                    </li>
-                    <li>
-                        <a href="#">totalUnpaid: <%= number_to_currency(@expensesSheet.totalUnpaid) %></a>
-                    </li>
-                    <li>
-                        <a href="#">owner: <%= @expensesSheet.owner.email %></a>
-                    </li>
-                </ul>
-            </li>
-            <li class="active">
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">AsociationLevel: <%= @expensesSheet.asociationLevel %></a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <% @expensesSheet.asociations.each do |asociation| %>
-                      <li>
-                        <a href="#">
-                            <%= asociation.user.email %>
-                        </a>
-                      </li>
-                    <% end %>
-                    <li>    
-                        <%= render 'newAsociationsForm' %>
-                    </li>
-                </ul>
-            </li>
-            <li class="active">
-                <a href="#pageGraphs" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Graphs</a>
-                <ul class="collapse list-unstyled" id="pageGraphs">
-                    <li>
-                        <a id="showBarButton" onclick="$('.hideable').hide(); $('#graficBar').show();">Bar</a>
-                    </li>
-                    <li>
-                        <a id="showPieButton" onclick="$('.hideable').hide(); $('#graficPie').show();">Pie</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 hideable" id="expensesTable">
-          <%= render 'expensesTable' %>
-        </div>
-        <div class="col-sm-12 hideable" id="graficBar" style="display: none">
-          <%= render 'graficBar' %>
-        </div>
-        <div class="col-sm-12 hideable" id="graficPie" style="display: none">
-          <%= render 'graficPie' %>
-        </div>
+  <!-- Sidebar -->
+  <%= render 'sidebar' %>
+  <!-- Container -->
+  <div class="container">
+    <% if alert.present? %>
+      <div class="alert alert-warning" role="alert">
+        <%= alert %>
       </div>
-    </div>    
+    <% end %>
+
+    <% if notice.present? %>
+      <div class="alert alert-success" role="alert">
+        <%= notice %>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-md-12 hideable" id="expensesTable">
+        <%= render 'expensesTable' %>
+      </div>
+      <div class="col-sm-8 hideable" id="graficBar" style="display: none">
+        <%= render 'graficBar' %>
+      </div>
+      <div class="col-sm-8 hideable" id="graficPie" style="display: none">
+        <%= render 'graficPie' %>
+      </div>
+    </div>
+  </div>    
 </div>
