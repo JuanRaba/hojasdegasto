@@ -6,7 +6,11 @@
         </div>
 
         <ul class="list-unstyled components">
-            <p><%= @expensesSheet.name %></p>
+            <li>
+              <a id="showTableButton" onclick="$('.hideable').hide(); $('#expensesTable').show();">
+                <%= @expensesSheet.name %>
+              </a>
+            </li>
             <li class="active">
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Resumen:</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -34,35 +38,35 @@
                         </a>
                       </li>
                     <% end %>
+                    <li>    
+                        <%= render 'newAsociationsForm' %>
+                    </li>
                 </ul>
             </li>
-            <li>    
-                <%= render 'newAsociationsForm' %>
+            <li class="active">
+                <a href="#pageGraphs" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Graphs</a>
+                <ul class="collapse list-unstyled" id="pageGraphs">
+                    <li>
+                        <a id="showBarButton" onclick="$('.hideable').hide(); $('#graficBar').show();">Bar</a>
+                    </li>
+                    <li>
+                        <a id="showPieButton" onclick="$('.hideable').hide(); $('#graficPie').show();">Pie</a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </nav>
     <div class="container">
-
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 hideable" id="expensesTable">
           <%= render 'expensesTable' %>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3">
-        </div>
-        <div class="col-sm-offset-3 col-sm-6">
+        <div class="col-sm-12 hideable" id="graficBar" style="display: none">
           <%= render 'graficBar' %>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-3">
-        </div>
-        <div class="col-sm-offset-3 col-sm-6">
+        <div class="col-sm-12 hideable" id="graficPie" style="display: none">
           <%= render 'graficPie' %>
         </div>
       </div>
-
     </div>    
 </div>
