@@ -15,7 +15,7 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
+    <%= render 'shared/navbar' if params[:action] == "index"%>
     <% if alert.present? %>
       <div class="alert alert-warning" role="alert">
         <%= alert %>
@@ -28,7 +28,7 @@
       </div>
     <% end %>
 
-      <%= yield %>
+    <%= yield %>
 
   </body>
 </html>

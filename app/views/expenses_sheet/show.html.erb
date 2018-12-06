@@ -2,60 +2,51 @@
     <!-- Sidebar -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>Bootstrap Sidebar</h3>
+            <a class="navbar-brand" href="<%= root_path %>"><h3>Inicio</h3></a>
         </div>
 
         <ul class="list-unstyled components">
-            <p>Dummy Heading</p>
+            <p><%= @expensesSheet.name %></p>
             <li class="active">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Resumen:</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
-                        <a href="#">Home 1</a>
+                        <a href="#">userSpent: <%= number_to_currency(@expensesSheet.userSpent(current_user)) %></a>
                     </li>
                     <li>
-                        <a href="#">Home 2</a>
+                        <a href="#">userBalance: <%= number_to_currency(@expensesSheet.userBalance(current_user)) %></a>
                     </li>
                     <li>
-                        <a href="#">Home 3</a>
+                        <a href="#">totalUnpaid: <%= number_to_currency(@expensesSheet.totalUnpaid) %></a>
+                    </li>
+                    <li>
+                        <a href="#">owner: <%= @expensesSheet.owner.email %></a>
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+            <li class="active">
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">AsociationLevel: <%= @expensesSheet.asociationLevel %></a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li>
-                        <a href="#">Page 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 3</a>
-                    </li>
+                    <% @expensesSheet.asociations.each do |asociation| %>
+                      <li>
+                        <a href="#">
+                            <%= asociation.user.email %>
+                        </a>
+                      </li>
+                    <% end %>
                 </ul>
             </li>
-            <li>
-                <a href="#">Portfolio</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
+            <li>    
+                <%= render 'newAsociationsForm' %>
             </li>
         </ul>
     </nav>
-  <div class="row">
-    <div class="col-md-6">
-      <%= render 'balanceTable' %>
-    </div>
-    <div class="col-md-6">
-      <%= render 'asociationsTable' %>
-    </div>
-    <div class="col-md-6">
-      <%= render 'expensesTable' %>
-    </div>
-  </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <%= render 'expensesTable' %>
+        </div>
+      </div>
+    </div>    
 </div>
 <%= render 'graficSheet' %>
