@@ -1,0 +1,8 @@
+
+  <h1>ExpensesSheet#edit</h1>
+  <%= link_to "#{@expensesSheet.name}", @sheet, 'data-turbolinks': false %>
+
+<%= form_with model: @expensesSheet, url: expenses_sheet_path, method: :patch, local: true do |f| %>
+  <p><%= f.text_field :name %></p>
+  <p><%= f.submit "Editar", class: "btn btn-primary" %></p>
+<% end %>

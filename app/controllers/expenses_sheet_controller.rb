@@ -1,4 +1,6 @@
 class ExpensesSheetController < ApplicationController
+
+  before_action :set_expensesSheet, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   authorize_resource
   def index
@@ -7,11 +9,28 @@ class ExpensesSheetController < ApplicationController
   end
 
   def show
-    @expensesSheet = ExpensesSheet.find(params[:id])
     authorize! :read, @expensesSheet
     @expenses = @expensesSheet.expenses
     @newExpense = Expense.new
     @newAsociation = Asociation.new
+  end
+
+  def edit
+    # not void, remember set_history => @expensesSheet = ExpensesSheet.find(params[:id])
+  end
+
+  def update
+    @expensesSheet.name = params[:expenses_sheet][:name]
+
+    respond_to do |format|
+      if @expensesSheet.save
+        format.html { redirect_to root_path, notice: 'expensesSheet name was successfully changed.' }
+        format.json { render :show, status: :created, location: @expensesSheet }
+      else
+        format.html { redirect_to root_path, alert: "newExpensesSheet name was not changed. #{@expensesSheet.errors.messages}" }
+        format.json { render json: @expensesSheet.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def create
@@ -34,12 +53,17 @@ class ExpensesSheetController < ApplicationController
 
 
   def destroy
-    @expensesSheet = ExpensesSheet.find(params[:id])
     authorize! :destroy, @expensesSheet
     @expensesSheet.destroy
     respond_to do |format|
       format.html { redirect_to root_path, notice: 'ExpensesSheet was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def set_expensesSheet
+    @expensesSheet = ExpensesSheet.find(params[:id])
   end
 end

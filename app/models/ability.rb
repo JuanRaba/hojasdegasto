@@ -14,7 +14,7 @@ class Ability
     can :read, ExpensesSheet do |expensesSheet|
       expensesSheet.is_user_asociated(user)
     end
-    can :destroy, ExpensesSheet do |expensesSheet|
+    can [:destroy, :edit, :update], ExpensesSheet do |expensesSheet|
       expensesSheet.owner == user
     end
 
