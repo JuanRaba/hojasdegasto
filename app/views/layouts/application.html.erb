@@ -15,7 +15,7 @@
   </head>
 
   <body>
-    <% if (params[:controller] == 'expenses_sheet' and params[:action] != "index") %>
+    <% if (params[:controller] == 'expenses_sheet' and params[:action] == "show") %>
       <%= yield %>
     <%else%>
       <%= render 'shared/navbar'%>
