@@ -19,8 +19,8 @@
           <%="#{index+1}"%>
         </th>
         <td><%= link_to "#{sheet.name}", sheet, 'data-turbolinks': false %></td>
-        <td><%= number_to_currency(sheet.userSpent(current_user)) %></td>
-        <td><%= number_to_currency(sheet.userBalance(current_user)) %></td>
+        <td><%= number_to_currency(sheet.userSpent(current_user), strip_insignificant_zeros: true) %></td>
+        <td><%= number_to_currency(sheet.userBalance(current_user), strip_insignificant_zeros: true) %></td>
         <td><%= sheet.asociationLevel %></td>
         <td>
           <% if current_user == sheet.owner %>
@@ -35,8 +35,8 @@
       <tr>
         <th scope="row"><%="Total"%></th>
         <td><%= @expensesSheets.count() %></td>
-        <td><%= number_to_currency(current_user.userSpent) %></td>
-        <td><%= number_to_currency(current_user.userBalance) %></td>
+        <td><%= number_to_currency(current_user.userSpent, strip_insignificant_zeros: true) %></td>
+        <td><%= number_to_currency(current_user.userBalance, strip_insignificant_zeros: true) %></td>
         <td></td>      
         <td></td>
       </tr>
@@ -50,4 +50,3 @@
     </tbody>
   </table>
 </div>
-

@@ -1,5 +1,7 @@
 {
   "name": "hojasdegasto",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "jquery-maskmoney": "^3.0.2"
+  }
 }

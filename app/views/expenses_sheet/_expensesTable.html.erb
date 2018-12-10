@@ -12,7 +12,7 @@
     <%= form_with model: @newExpense, url: expenses_sheet_expenses_path(@expensesSheet, @newExpense), method: :post, local: true do |f| %>
       <td><%= f.submit "Crear", class: "btn btn-primary" %></td>
       <td><%= f.text_field :name %></td>
-      <td><%= f.number_field :amount %></td>
+      <td><%= f.text_field :amount, data: {prefix:"$", thousands: ",", precision: 0}%></td>
       <td><%= f.check_box :owner, {checked: true} %> uncheck to plan expense</td>
     <% end %>
     </tr>
@@ -23,7 +23,7 @@
         <%= link_to 'x', expenses_sheet_expense_path(@expensesSheet, expense), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
       </th>
       <td><%= expense.show_name %></td>
-      <td><%= number_to_currency(expense.amount) %></td>
+      <td><%= number_to_currency(expense.amount, strip_insignificant_zeros: true) %></td>
       <td>
         <% if expense.user.present? %>
           <%= expense.user.email %>
@@ -37,9 +37,13 @@
     <tr>
       <th scope="row"><%="Total"%></th>
       <td><%= @expensesSheet.expenses.count() %></td>
-      <td><%= number_to_currency(@expensesSheet.totalSpent) %></td>
+      <td><%= number_to_currency(@expensesSheet.totalSpent, strip_insignificant_zeros: true) %></td>
       <td></td>      
       <td></td>
     </tr>
   </tbody>
 </table>
+
+<script>
+  $('#expense_amount').maskMoney();
+</script>
