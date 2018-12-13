@@ -3,7 +3,6 @@ class ExpensesController < ApplicationController
   def create
     @newExpense = Expense.new()
     @newExpense.amount = params[:expense][:amount].scan(/[.0-9]/).join().to_i
-    byebug
     @newExpense.name = params[:expense][:name]
     @newExpense.expenses_sheet_id = params[:expenses_sheet_id]
     @newExpense.category_id = params[:category_id]
