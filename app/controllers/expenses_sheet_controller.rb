@@ -11,7 +11,10 @@ class ExpensesSheetController < ApplicationController
   def show
     authorize! :read, @expensesSheet
     @expenses = @expensesSheet.expenses
+    # expenses form
     @newExpense = Expense.new
+    @categories = Category.all
+    # asociation form
     @newAsociation = Asociation.new
   end
 

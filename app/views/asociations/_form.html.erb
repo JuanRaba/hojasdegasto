@@ -1,4 +1,4 @@
-<% if current_user == @expensesSheet.owner %>
+<!-- used in expenses_sheet sidebar -->
   <%= form_with model: @newAsociation, url: expenses_sheet_asociations_path(@expensesSheet), method: :post, local: true do |f| %>
     <div class="field">
       Añadir colaborador por email
@@ -6,4 +6,3 @@
       <%= f.submit "Añadir", class: "btn btn-primary" %>
     </div>
   <% end %>
-<% end %>

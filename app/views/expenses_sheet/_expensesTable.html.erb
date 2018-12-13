@@ -4,17 +4,13 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Amount</th>
+      <th scope="col">Category</th>
       <th scope="col">owner</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-    <%= form_with model: @newExpense, url: expenses_sheet_expenses_path(@expensesSheet, @newExpense), method: :post, local: true do |f| %>
-      <td><%= f.submit "Crear", class: "btn btn-primary" %></td>
-      <td><%= f.text_field :name %></td>
-      <td><%= f.text_field :amount, data: {prefix:"$", thousands: ",", precision: 0}%></td>
-      <td><%= f.check_box :owner, {checked: true} %> uncheck to plan expense</td>
-    <% end %>
+      <%= render 'expenses/form' %>
     </tr>
   <% @expenses.each_with_index do |expense,index| %>
     <tr>
@@ -24,6 +20,7 @@
       </th>
       <td><%= expense.show_name %></td>
       <td><%= number_to_currency(expense.amount, strip_insignificant_zeros: true) %></td>
+      <td><%= expense.category.try(:name) %></td>
       <td>
         <% if expense.user.present? %>
           <%= expense.user.email %>

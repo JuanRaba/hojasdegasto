@@ -37,8 +37,10 @@
                     </a>
                   </li>
                 <% end %>
-                <li>    
-                    <%= render 'newAsociationsForm' %>
+                <li>
+                    <% if current_user == @expensesSheet.owner %>
+                        <%= render 'asociations/form' %>
+                    <% end %>
                 </li>
             </ul>
         </li>
