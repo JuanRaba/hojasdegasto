@@ -4,10 +4,10 @@
   var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-          labels: <%=@expensesSheet.expenses.map { |e| e.name }.to_json.html_safe%>,
+          labels: <%=@expenses.map { |e| e.name }.to_json.html_safe%>,
           datasets: [{
               label: '<%=@expensesSheet.name.upcase%>',
-              data: <%=@expensesSheet.expenses.map { |e| e.amount.to_i }%>,
+              data: <%=@expenses.map { |e| e.amount.to_i }%>,
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
               ],

@@ -3,6 +3,7 @@ class ExpensesSheet < ApplicationRecord
   has_many :expenses, dependent: :destroy
   has_many :asociations, dependent: :destroy
   has_many :users, through: :asociations #and_belongs_to?? TODO
+  has_many :categories, through: :expenses
 
   validates :name, presence: { message: "must be given please" }
 
