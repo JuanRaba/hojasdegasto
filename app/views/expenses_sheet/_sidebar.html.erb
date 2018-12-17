@@ -2,7 +2,7 @@
     <div class="sidebar-header">
         <a class="navbar-brand" href="<%= root_path %>"><h3>Inicio</h3></a>
         <a class="nav-link"><%= current_user.email %></a>
-        <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+        <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'nav-link' %>
     </div>
 
     <ul class="list-unstyled components">
