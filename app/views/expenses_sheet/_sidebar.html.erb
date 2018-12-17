@@ -2,6 +2,7 @@
     <div class="sidebar-header">
         <a class="navbar-brand" href="<%= root_path %>"><h3>Inicio</h3></a>
         <a class="nav-link"><%= current_user.email %></a>
+        <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, class: 'nav-link' %>
     </div>
 
     <ul class="list-unstyled components">
@@ -60,3 +61,20 @@
         </li>
     </ul>
 </nav>
+<script>
+    function hashCode(str) { // java String#hashCode
+        var hash = 0;
+        for (var i = 0; i < str.length; i++) {
+           hash = str.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        return hash;
+    } 
+
+    function intToRGB(i){
+        var c = (i & 0x00FFFFFF).toString(16).toUpperCase();
+        return "00000".substring(0, 6 - c.length) + c;
+    }
+
+    var color = intToRGB(hashCode("<%= @expensesSheet.name %>"));
+    document.getElementById("sidebar").style.backgroundColor = "#"+color;
+</script>
