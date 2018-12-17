@@ -13,6 +13,9 @@ class ExpensesSheet < ApplicationRecord
   def totalUnpaid
     self.expenses.where(user: nil).pluck("amount").sum()
   end
+  def expensesCountToClaim
+    self.expenses.where(user: nil).count()
+  end
   def totalSpent
     self.expenses.pluck("amount").sum()
   end

@@ -8,6 +8,7 @@
         <th scope="col">Name</th>
         <th scope="col">userSpent</th>
         <th scope="col">userBalance</th>
+        <th scope="col">expenses2Claim</th>
         <th scope="col">#asociation</th>
         <th scope="col">owner</th>
       </tr>
@@ -21,6 +22,7 @@
         <td><%= link_to "#{sheet.name}", sheet, 'data-turbolinks': false %></td>
         <td><%= number_to_currency(sheet.userSpent(current_user), strip_insignificant_zeros: true) %></td>
         <td><%= number_to_currency(sheet.userBalance(current_user), strip_insignificant_zeros: true) %></td>
+        <td><%= sheet.expensesCountToClaim() %></td>
         <td><%= sheet.asociationLevel %></td>
         <td>
           <% if current_user == sheet.owner %>
@@ -37,7 +39,8 @@
         <td><%= @expensesSheets.count() %></td>
         <td><%= number_to_currency(current_user.userSpent, strip_insignificant_zeros: true) %></td>
         <td><%= number_to_currency(current_user.userBalance, strip_insignificant_zeros: true) %></td>
-        <td></td>      
+        <td></td>
+        <td></td>
         <td></td>
       </tr>
 
