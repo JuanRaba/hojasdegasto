@@ -58,7 +58,7 @@ class ExpensesController < ApplicationController
     @expense.category_id = params[:category_id]
     @expense.user = current_user if params[:expense][:owner] == '1'
       
-    authorize! :create, @expense
+    authorize! :update, @expense
     respond_to do |format|
       if @expense.save
         format.html { redirect_to expenses_sheet_url(@expense.expensesSheet), notice: 'expense was successfully updated.' }
