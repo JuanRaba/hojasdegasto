@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     end
     resources :asociations, only: [:create]
   end
+  resources :expenses, only: [:edit, :update]
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }

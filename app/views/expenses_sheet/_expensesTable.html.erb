@@ -16,7 +16,8 @@
     <tr>
       <th scope="row">
         <%="#{index+1}"%>
-        <%= link_to 'x', expenses_sheet_expense_path(@expensesSheet, expense), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        <%= link_to 'x', expenses_sheet_expense_path(@expensesSheet, expense), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+        <%= link_to 'Edit', edit_expense_path(expense), class: "btn btn-success btn-sm" %> 
       </th>
       <td><%= expense.show_name %></td>
       <td><%= number_to_currency(expense.amount, strip_insignificant_zeros: true) %></td>

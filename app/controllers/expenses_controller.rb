@@ -45,6 +45,12 @@ class ExpensesController < ApplicationController
     end
   end
 
+  def edit
+    @expense = Expense.find(params[:id])
+    authorize! :edit, @expense
+    @categories = Category.all
+  end
+
   private
 
   def expense_params

@@ -1,0 +1,15 @@
+
+<%= form_with model: @expense, url: expense_path(@expense), method: :patch, local: true do |f| %>
+  <td><%= f.text_field :name %></td>
+  <td><%= f.text_field :amount, data: {prefix:"$", thousands: ",", precision: 0}%></td>
+  <td>
+    <%=
+      select_tag(
+        :category_id,
+        options_from_collection_for_select(@categories.order(:name), :id, :name)
+      )
+    %>
+  </td>
+  <td><%= f.check_box :owner, {checked: true} %> uncheck to plan expense</td>
+  <td><%= f.submit "Editar", class: "btn btn-primary" %></td>
+<% end %>
