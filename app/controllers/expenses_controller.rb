@@ -51,6 +51,25 @@ class ExpensesController < ApplicationController
     @categories = Category.all
   end
 
+  def update
+    @expense = Expense.find(params[:id])
+    @expense.amount = params[:expense][:amount].scan(/[.0-9]/).join().to_i
+    @expense.name = params[:expense][:name]
+    @expense.category_id = params[:category_id]
+    @expense.user = current_user if params[:expense][:owner] == '1'
+      
+    authorize! :create, @expense
+    respond_to do |format|
+      if @expense.save
+        format.html { redirect_to expenses_sheet_url(@expense.expensesSheet), notice: 'expense was successfully updated.' }
+        format.json { render :show, status: :created, location: @expense }
+      else
+        format.html { redirect_to expenses_sheet_url(@expense.expensesSheet), notice: "expense was not updated.#{@expense.errors.messages}" }
+        format.json { render json: @expense.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
   def expense_params

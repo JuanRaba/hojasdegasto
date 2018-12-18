@@ -18,7 +18,7 @@ class Ability
       expensesSheet.owner == user
     end
 
-    can [:create, :edit], Expense do |expense|
+    can [:create, :edit, :update], Expense do |expense|
       expense.expensesSheet.is_user_asociated(user)
     end
     can :claim, Expense do |expense|
