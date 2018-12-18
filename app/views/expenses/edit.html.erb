@@ -13,3 +13,7 @@
   <td><%= f.check_box :owner, {checked: false} %> check to take the expense</td>
   <td><%= f.submit "Editar", class: "btn btn-primary" %></td>
 <% end %>
+
+<script>
+  $('#expense_amount').maskMoney();
+</script>
