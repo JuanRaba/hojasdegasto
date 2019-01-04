@@ -11,8 +11,11 @@
     %>
   </td>
   <td><%= f.check_box :owner, {checked: false} %> check to take the expense</td>
-  <td><%= f.submit "Editar", class: "btn btn-primary" %></td>
+  <td><%= f.submit "Editar", class: "btn btn-success" %></td>
+  <td><%= link_to "Back", expenses_sheet_url(@expense.expensesSheet), class: "btn btn-primary" %></td>
 <% end %>
+
+
 
 <script>
   $('#expense_amount').maskMoney();
