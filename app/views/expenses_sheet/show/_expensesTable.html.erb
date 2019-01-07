@@ -15,6 +15,8 @@
     </tr>
   <% @expenses.each_with_index do |expense,index| %>
     <tr>
+      <th scope="row">
+        <%="#{index+1}"%>
         <%= render expense %>      
     </tr>    
   <% end %>

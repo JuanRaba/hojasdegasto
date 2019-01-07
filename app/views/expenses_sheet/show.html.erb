@@ -1,6 +1,6 @@
 <div class="wrapper">
   <!-- Sidebar -->
-  <%= render 'sidebar' %>
+  <%= render 'expenses_sheet/show/sidebar' %>
   <!-- Container -->
   <div class="container">
     <% if alert.present? %>
@@ -16,16 +16,16 @@
     <% end %>
     <div class="row">
       <div class="col-md-12 hideable" id="expensesTable">
-        <%= render 'expensesTable' %>
+        <%= render 'expenses_sheet/show/expensesTable' %>
       </div>
       <div class="col-sm-8 hideable" id="graficBar" style="display: none">
-        <%= render 'graficBar' %>
+        <%= render 'expenses_sheet/show/grafic/graficBar' %>
       </div>
       <div class="col-sm-8 hideable" id="graficPie" style="display: none">
-        <%= render 'graficPie' %>
+        <%= render 'expenses_sheet/show/grafic/graficPie' %>
       </div>
       <div class="col-sm-8 hideable" id="graficDoughnut" style="display: none">
-        <%= render 'graficDoughnut' %>
+        <%= render 'expenses_sheet/show/grafic/graficDoughnut' %>
       </div>     
     </div>
   </div>    
