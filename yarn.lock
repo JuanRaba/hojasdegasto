@@ -2,6 +2,24 @@
 # yarn lockfile v1
 
 
+bootstrap4-datetimepicker@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/bootstrap4-datetimepicker/-/bootstrap4-datetimepicker-5.2.3.tgz#e7e42839db0531deaa6b53fd63cbd4269e80e09a"
+  integrity sha1-5+QoOdsFMd6qa1P9Y8vUJp6A4Jo=
+  dependencies:
+    bootstrap "4.0.0-alpha.6"
+    jquery "^1.8.3 || ^2.0 || ^3.0"
+    moment "^2.10"
+    moment-timezone "^0.4.0"
+
+bootstrap@4.0.0-alpha.6:
+  version "4.0.0-alpha.6"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-alpha.6.tgz#4f54dd33ac0deac3b28407bc2df7ec608869c9c8"
+  integrity sha1-T1TdM6wN6sOyhAe8LffsYIhpycg=
+  dependencies:
+    jquery ">=1.9.1"
+    tether "^1.4.0"
+
 jquery-maskmoney@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/jquery-maskmoney/-/jquery-maskmoney-3.0.2.tgz#f18de4f06b8c66ad97cae8b320571c936ac637b7"
@@ -9,7 +27,24 @@ jquery-maskmoney@^3.0.2:
   dependencies:
     jquery ">=1.6"
 
-jquery@>=1.6:
+jquery@>=1.6, jquery@>=1.9.1, "jquery@^1.8.3 || ^2.0 || ^3.0":
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
   integrity sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg==
+
+moment-timezone@^0.4.0:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.4.1.tgz#81f598c3ad5e22cdad796b67ecd8d88d0f5baa06"
+  integrity sha1-gfWYw61eIs2teWtn7NjYjQ9bqgY=
+  dependencies:
+    moment ">= 2.6.0"
+
+"moment@>= 2.6.0", moment@^2.10:
+  version "2.23.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.23.0.tgz#759ea491ac97d54bac5ad776996e2a58cc1bc225"
+  integrity sha512-3IE39bHVqFbWWaPOMHZF98Q9c3LDKGTmypMiTM2QygGXXElkFWIH7GxfmlwmY2vwa+wmNsoYZmG2iusf1ZjJoA==
+
+tether@^1.4.0:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/tether/-/tether-1.4.5.tgz#8efd7b35572767ba502259ba9b1cc167fcf6f2c1"
+  integrity sha512-fysT1Gug2wbRi7a6waeu39yVDwiNtvwj5m9eRD+qZDSHKNghLo6KqP/U3yM2ap6TNUL2skjXGJaJJTJqoC31vw==

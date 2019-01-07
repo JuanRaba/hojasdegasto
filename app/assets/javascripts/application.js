@@ -13,6 +13,9 @@
 //= require jquery
 //= require jquery-maskmoney/src/jquery.maskMoney
 //= require Chart.min
+//= require moment/moment
+//= require moment-timezone/moment-timezone
+//= require bootstrap4-datetimepicker/build/js/bootstrap-datetimepicker.min
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks

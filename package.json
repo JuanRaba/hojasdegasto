@@ -2,6 +2,7 @@
   "name": "hojasdegasto",
   "private": true,
   "dependencies": {
+    "bootstrap4-datetimepicker": "^5.2.3",
     "jquery-maskmoney": "^3.0.2"
   }
 }
