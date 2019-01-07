@@ -1,0 +1,14 @@
+<!-- used in expenses_sheet/_expensesTable -->
+  <%= link_to 'x', expenses_sheet_expense_path(@expensesSheet, expense), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+  <%= link_to 'Edit', edit_expense_path(expense), class: "btn btn-success btn-sm" %> 
+</th>
+<td><%= expense.show_name %></td>
+<td><%= number_to_currency(expense.amount, strip_insignificant_zeros: true) %></td>
+<td><%= expense.category.try(:name) %></td>
+<td>
+  <% if expense.user.present? %>
+    <%= expense.user.email %>
+  <% else %>
+    <%= link_to 'Claim',expenses_sheet_expense_claim_path(@expensesSheet, expense), class: "btn btn-primary" %>
+  <% end %>
+</td>
