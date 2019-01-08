@@ -1,0 +1,23 @@
+    <ul>
+    <%= form_with model: @expense, url: expense_path(@expense), method: :patch, local: true do |f| %>
+      <li><%= f.text_field :name %></li>
+      <li><%= f.text_field :amount, data: {prefix:"$", thousands: ",", precision: 0}%></li>
+      <li> 
+        <div style="position: relative">
+          <!-- this shit flies away -->
+          <%= f.text_field :start, class: "datepicker" %>    
+        </div> 
+      </li>
+      <li>
+        <%=
+          select_tag(
+            :category_id,
+            options_from_collection_for_select(@categories.order(:name), :id, :name, @expense.category_id)
+          )
+        %>
+      </li>
+      <li><%= f.check_box :owner, {checked: false} %> check to take the expense</li>
+      <li><%= f.submit "Editar", class: "btn btn-success" %></li>
+      <li><%= link_to "Back", expenses_sheet_url(@expense.expensesSheet), class: "btn btn-primary" %></li>
+    <% end %>
+    <ul>

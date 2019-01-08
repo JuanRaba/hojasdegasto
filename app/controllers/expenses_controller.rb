@@ -57,6 +57,7 @@ class ExpensesController < ApplicationController
     @expense.amount = params[:expense][:amount].scan(/[.0-9]/).join().to_i
     @expense.name = params[:expense][:name]
     @expense.category_id = params[:category_id]
+    @expense.start = params[:expense][:start]
     @expense.user = current_user if params[:expense][:owner] == '1'
       
     authorize! :update, @expense

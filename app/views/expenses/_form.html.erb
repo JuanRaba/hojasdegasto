@@ -12,8 +12,13 @@
     %>
   </td>
   <td><%= f.check_box :owner, {checked: true} %> uncheck to plan expense</td>
-  <td> <%= f.text_field :start, class: "datepicker",  data: { 'date-container':'#myModalId'} %> </td>
+  <td> <%= f.text_field :start, class: "datepicker" %> </td>
 <% end %>
+
+<script>
+  $('#expense_amount').maskMoney();
+</script>
+
 <script>
   document.addEventListener(
   "turbolinks:load",
