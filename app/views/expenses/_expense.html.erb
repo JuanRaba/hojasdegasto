@@ -12,5 +12,5 @@
 <td><%= expense.try(:start) %></td>
 <td>
   <%= link_to 'x', expenses_sheet_expense_path(@expensesSheet, expense), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
-  <%= link_to 'Edit', edit_expense_path(expense), class: "btn btn-success btn-sm" %> 
+  <%= link_to 'Edit', edit_expense_path(expense), class: "btn btn-success btn-sm", 'data-turbolinks': false  %> 
 </td>
