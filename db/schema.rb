@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_01_07_223136) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.bigint "category_id"
-    t.datetime "start"
+    t.date "start"
     t.index ["category_id"], name: "index_expenses_on_category_id"
     t.index ["expenses_sheet_id"], name: "index_expenses_on_expenses_sheet_id"
     t.index ["user_id"], name: "index_expenses_on_user_id"

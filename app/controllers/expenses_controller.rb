@@ -6,6 +6,7 @@ class ExpensesController < ApplicationController
     @newExpense.name = params[:expense][:name]
     @newExpense.expenses_sheet_id = params[:expenses_sheet_id]
     @newExpense.category_id = params[:category_id]
+    @newExpense.start = params[:expense][:start]
     @newExpense.user = current_user if params[:expense][:owner] == '1'
       
     authorize! :create, @newExpense
