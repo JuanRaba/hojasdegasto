@@ -11,14 +11,14 @@
       )
     %>
   </td>
-  <td> <%= f.text_field :start, class: "datepicker" %> </td>
+  <td> <%= f.text_field :start, class: "datepicker",  data: { 'date-container':'#myModalId'} %> </td>
   
   <td><%= f.check_box :owner, {checked: true} %> uncheck to plan expense</td>
 <% end %>
 <script>
   $(document).ready(function() {
-    $('.datepicker').datetimepicker(
-            { //debug: true,
+    var datepicker = $('.datepicker').datetimepicker(
+            { debug: true,
               icons:
               {
                 time: 'fa fa-clock-o',
@@ -33,5 +33,14 @@
               }
             }
           );
+    position = datepicker.offset();
+    datepicker.css({
+      position: 'absolute',
+      top: position.top,
+      bottom: 'auto',
+      left: 'auto',
+      right: position.right
+    });
+    //TODO fix width
   });
 </script>
