@@ -3,17 +3,6 @@
   <%= render 'expenses_sheet/show/sidebar' %>
   <!-- Container -->
   <div class="container">
-    <% if alert.present? %>
-      <div class="alert alert-warning" role="alert">
-        <%= alert %>
-      </div>
-    <% end %>
-
-    <% if notice.present? %>
-      <div class="alert alert-success" role="alert">
-        <%= notice %>
-      </div>
-    <% end %>
     <div class="row">
       <div class="col-md-12 hideable" id="expensesTable">
         <%= render 'expenses_sheet/show/expensesTable' %>
