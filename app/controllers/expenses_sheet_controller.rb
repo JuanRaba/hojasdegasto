@@ -8,6 +8,11 @@ class ExpensesSheetController < ApplicationController
     @newExpensesSheet = ExpensesSheet.new
   end
 
+  def fullcalendar
+    @expensesSheet = ExpensesSheet.find(params[:expenses_sheet_id])
+    @expenses = @expensesSheet.expenses
+  end
+
   def show
     authorize! :read, @expensesSheet
     @expenses = @expensesSheet.expenses.order("created_at DESC")

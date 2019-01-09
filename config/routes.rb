@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :categories
   resources :expenses_sheet, only: [:index, :show, :create, :destroy, :edit, :update] do
+    get 'fullcalendar'
     resources :expenses, only: [:create, :destroy] do
       get 'claim' #maybe unnecesary anidation, unless want to change expense to another sheet
     end

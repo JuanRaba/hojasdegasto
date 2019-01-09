@@ -13,6 +13,9 @@
             <%= @expensesSheet.name %>
           </a>
         </li>
+        <li>
+          <%= link_to 'fullcalendar', expenses_sheet_fullcalendar_path(@expensesSheet) %>
+        </li>
         <li class="active">
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Resumen:</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">

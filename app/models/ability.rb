@@ -11,7 +11,7 @@ class Ability
     #     can :read, :all
     #   end
     can :create, ExpensesSheet # index show create
-    can :read, ExpensesSheet do |expensesSheet|
+    can [:read, :fullcalendar], ExpensesSheet do |expensesSheet|
       expensesSheet.is_user_asociated(user)
     end
     can [:destroy, :edit, :update], ExpensesSheet do |expensesSheet|
