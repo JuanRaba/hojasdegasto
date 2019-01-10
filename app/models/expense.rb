@@ -6,4 +6,15 @@ class Expense < ApplicationRecord
   def show_name
     self.name.present? ? self.name : self.id
   end
+
+  def title
+    name
+  end
+
+  def to_json(options = {})
+    options[:except] = [:start2, :title]
+    options[:methods] = [:start, :title]
+    byebug
+    super(options)
+  end
 end

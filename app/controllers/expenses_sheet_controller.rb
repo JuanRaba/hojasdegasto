@@ -11,6 +11,11 @@ class ExpensesSheetController < ApplicationController
   def fullcalendar
     @expensesSheet = ExpensesSheet.find(params[:expenses_sheet_id])
     @expenses = @expensesSheet.expenses
+    @expenses_calendar = []
+    @expenses.each do |e|
+      @expenses_calendar << {"title"=>e.name, "start"=>e.start}
+    end
+
   end
 
   def show
