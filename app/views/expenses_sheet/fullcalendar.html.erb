@@ -4,6 +4,7 @@
 
 <script>
   $('#calendar').fullCalendar({
+    firstDay: 1,
     events: <%= raw @expenses_calendar.to_json() %>
   });
 </script>
