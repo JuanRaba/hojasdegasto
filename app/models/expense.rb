@@ -17,4 +17,8 @@ class Expense < ApplicationRecord
     byebug
     super(options)
   end
+
+  def self.start_secure?(new_date)
+    DateTime.parse new_date rescue nil
+  end
 end

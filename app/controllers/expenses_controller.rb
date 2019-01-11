@@ -6,7 +6,11 @@ class ExpensesController < ApplicationController
     @newExpense.name = params[:expense][:name]
     @newExpense.expenses_sheet_id = params[:expenses_sheet_id]
     @newExpense.category_id = params[:category_id]
-    @newExpense.start = params[:expense][:start]
+    if Expense.start_secure? params[:expense][:start]
+      @newExpense.start = params[:expense][:start]
+    else
+      @newExpense.start = Time.now()
+    end
     @newExpense.user = current_user if params[:expense][:owner] == '1'
       
     authorize! :create, @newExpense
@@ -57,7 +61,7 @@ class ExpensesController < ApplicationController
     @expense.amount = params[:expense][:amount].scan(/[.0-9]/).join().to_i
     @expense.name = params[:expense][:name]
     @expense.category_id = params[:category_id]
-    @expense.start = params[:expense][:start]
+    @expense.start = params[:expense][:start] if Expense.start_secure? params[:expense][:start]
     @expense.user = current_user if params[:expense][:owner] == '1'
       
     authorize! :update, @expense
