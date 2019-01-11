@@ -13,7 +13,7 @@ class ExpensesSheetController < ApplicationController
     @expenses = @expensesSheet.expenses
     @expenses_calendar = []
     @expenses.each do |e|
-      @expenses_calendar << {"title"=>"$#{e.amount} #{e.name}", "start"=>e.start}
+      @expenses_calendar << {"title"=>"$#{e.amount} #{e.name}", "start"=>e.start, "url"=>edit_expense_path(e) }
     end
 
   end
