@@ -3,8 +3,13 @@
 <div id='calendar'></div>
 
 <script>
-  $('#calendar').fullCalendar({
-    firstDay: 1,
-    events: <%= raw @expenses_calendar.to_json() %>
-  });
+  document.addEventListener("turbolinks:before-cache", function() {
+    $('#calendar').fullCalendar('destroy');
+  })
+  document.addEventListener("turbolinks:load", function() {
+    $('#calendar').fullCalendar({
+      firstDay: 1,
+      events: <%= raw @expenses_calendar.to_json() %>
+    });
+  })
 </script>
