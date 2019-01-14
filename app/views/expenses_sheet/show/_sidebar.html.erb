@@ -5,6 +5,9 @@
         <a class="navbar-brand" href="<%= root_path %>"><h3>Inicio</h3></a>
         <a class="nav-link"><%= current_user.email %></a>
         <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'nav-link' %>
+        <button type="button" id="sidebarCollapse" class="btn btn-info" style="margin-left: 90%">
+            <span>Toggle Sidebar</span>
+        </button>
     </div>
 
     <ul class="list-unstyled components">
@@ -82,4 +85,11 @@
 
     var color = intToRGB(hashCode("<%= @expensesSheet.name %>"));
     document.getElementById("sidebar").style.backgroundColor = "#"+color;
+</script>
+<script>
+  $(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+  });
 </script>
