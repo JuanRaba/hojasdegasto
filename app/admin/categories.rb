@@ -29,7 +29,7 @@ permit_params :name
   end
 
   form do |f|
-    inputs 'Agregando una nueva Category' do
+    inputs 'Category Form' do
       input :name
     end
     actions
