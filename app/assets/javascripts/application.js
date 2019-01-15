@@ -22,3 +22,5 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+//= stub active_admin

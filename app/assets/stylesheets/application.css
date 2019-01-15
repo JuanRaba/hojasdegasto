@@ -13,5 +13,6 @@
  *= require bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.min
  *= require fullcalendar/dist/fullcalendar
  *= require_tree .
+ *= stub active_admin
  *= require_self
  */
