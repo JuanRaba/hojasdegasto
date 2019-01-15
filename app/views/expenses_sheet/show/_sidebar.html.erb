@@ -3,7 +3,7 @@
     <%= render 'shared/alerts'%>
     <div class="sidebar-header">
         <a class="navbar-brand" href="<%= root_path %>"><h3>Inicio</h3></a>
-        <a class="nav-link"><%= current_user.email %></a>
+        <a class="nav-link"><%= current_user.show_name %></a>
         <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'nav-link' %>
         <button type="button" id="sidebarCollapse" class="btn btn-info" style="margin-left: 90%">
             <span>Toggle Sidebar</span>
@@ -32,7 +32,7 @@
                     <a href="#">totalUnpaid: <%= number_to_currency(@expensesSheet.totalUnpaid) %></a>
                 </li>
                 <li>
-                    <a href="#">owner: <%= @expensesSheet.owner.email %></a>
+                    <a href="#">owner: <%= @expensesSheet.owner.show_name %></a>
                 </li>
             </ul>
         </li>
@@ -42,7 +42,7 @@
                 <% @expensesSheet.asociations.each do |asociation| %>
                   <li>
                     <a href="#">
-                        <%= asociation.user.email %>
+                        <%= asociation.user.show_name %>
                     </a>
                   </li>
                 <% end %>

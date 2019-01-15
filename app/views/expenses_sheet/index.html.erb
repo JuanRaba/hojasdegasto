@@ -29,7 +29,7 @@
             You can: <%= link_to 'Edit', edit_expenses_sheet_path(sheet), class: "btn btn-success btn-sm" %> 
               <%= link_to 'x', sheet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
           <%else%>
-            <%= sheet.owner.email %>
+            <%= sheet.owner.show_name %>
           <%end%>
         </td>
       </tr>    

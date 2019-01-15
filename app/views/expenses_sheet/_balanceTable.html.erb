@@ -15,7 +15,7 @@
       <td><%= number_to_currency(@expensesSheet.userBalance(current_user)) %></td>
       <td><%= number_to_currency(@expensesSheet.totalUnpaid) %></td>
       <td><%= @expensesSheet.asociationLevel %></td>
-      <td><%= @expensesSheet.owner.email %></td>
+      <td><%= @expensesSheet.owner.show_name %></td>
     </tr> 
   </tbody>
 </table>

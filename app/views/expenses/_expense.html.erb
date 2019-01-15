@@ -4,7 +4,7 @@
 <td><%= expense.category.try(:name) %></td>
 <td>
   <% if expense.user.present? %>
-    <%= expense.user.email %>
+    <%= expense.user.show_name %>
   <% else %>
     <%= link_to 'Claim',expenses_sheet_expense_claim_path(@expensesSheet, expense), class: "btn btn-primary" %>
   <% end %>

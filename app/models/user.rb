@@ -14,4 +14,7 @@ class User < ApplicationRecord
   def userSpent
     self.expensesSheets.inject(0) {|sum, n| sum + n.userSpent(self) }
   end
+  def show_name
+    self.name.present? ? self.name : self.email.split('@').first
+  end
 end

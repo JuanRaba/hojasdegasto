@@ -16,7 +16,7 @@
           </li>
         <% else %>
           <li class="nav-item">
-            <a class="nav-link"><%= current_user.email %></a>
+            <a class="nav-link"><%= current_user.show_name %></a>
           </li>
           <li class="nav-item">
             <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'nav-link' %>
