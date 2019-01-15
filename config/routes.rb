@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
   resources :expenses, only: [:edit, :update]
   devise_for :users, controllers: {
+    sessions: 'users/sessions', # acive_admin needs this
     registrations: 'users/registrations'
   }
   root to: "expenses_sheet#index"
