@@ -11,10 +11,10 @@
 #ExpensesSheet.destroy_all
 u = User.first
 e = ExpensesSheet.create!(
-  name: 'hoja1',
+  name: 'hoja_seed',
   owner: u
   )
-c = Category.create!(
+c = Category.first_or_create!(
   name: '---'
   )
 a = Asociation.create!(
