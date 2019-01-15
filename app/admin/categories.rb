@@ -2,7 +2,7 @@ ActiveAdmin.register Category do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-# permit_params :list, :of, :attributes, :on, :model
+permit_params :name
 #
 # or
 #
@@ -24,6 +24,13 @@ ActiveAdmin.register Category do
     column :used_times do |c|
       count = c.expenses.count
       count.zero? ? '' : count
+    end
+    actions
+  end
+
+  form do |f|
+    inputs 'Agregando una nueva Category' do
+      input :name
     end
     actions
   end
