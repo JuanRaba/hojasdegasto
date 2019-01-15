@@ -6,4 +6,31 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-AdminUser.create!(email: 'admin@rabanillo.com', password: 'admin1234', password_confirmation: 'admin1234') if Rails.env.development?
+#Expense.destroy_all
+#Asociation.destroy_all
+#ExpensesSheet.destroy_all
+u = User.first
+e = ExpensesSheet.create!(
+  name: 'hoja1',
+  owner: u
+  )
+c = Category.create!(
+  name: '---'
+  )
+a = Asociation.create!(
+  user: u,
+  expensesSheet: e
+  )
+10.times do |j|
+  gasto = e.expenses.build(
+    amount: j,
+    user: u,
+    expensesSheet: e,
+    category: c,
+    start: Time.now
+  )
+  gasto.save!
+end
+
+
+#AdminUser.create!(email: 'admin@rabanillo.com', password: 'admin1234', password_confirmation: 'admin1234') if Rails.env.development?
