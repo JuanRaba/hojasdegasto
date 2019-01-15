@@ -35,4 +35,9 @@ permit_params :name
     actions
   end
 
+  filter :name
+  filter :created_at
+  filter :updated_at
+  # filter :used_times, as: :numeric
+
 end
