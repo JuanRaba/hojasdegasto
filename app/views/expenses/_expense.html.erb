@@ -1,16 +1,38 @@
-<!-- used in expenses_sheet/_expensesTable -->
-<td><%= expense.show_name %></td>
-<td><%= number_to_currency(expense.amount, strip_insignificant_zeros: true) %></td>
-<td><%= expense.category.try(:name) %></td>
-<td>
+<!-- current #{user} avatar -->
+<div class="user_avatar">
+  <img src="https://s3.amazonaws.com/uifaces/faces/twitter/manugamero/73.jpg">
   <% if expense.user.present? %>
     <%= expense.user.show_name %>
   <% else %>
     <%= link_to 'Claim',expenses_sheet_expense_claim_path(@expensesSheet, expense), class: "btn btn-primary" %>
   <% end %>
-</td>
-<td><%= expense.try(:start) %></td>
-<td>
-  <%= link_to 'x', expenses_sheet_expense_path(@expensesSheet, expense), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
-  <%= link_to 'Edit', edit_expense_path(expense), class: "btn btn-success btn-sm", 'data-turbolinks': false  %> 
-</td>
+</div><!-- the comment body --><div class="comment_body">
+  <p>
+    <div class="replied_to">
+      <p>
+        <span class="user"> <%= link_to expense.show_name, edit_expense_path(expense), 'data-turbolinks': false  %> :</span>
+        <%= expense.category.try(:name) %>
+        <i class="fa fa-calendar"></i> <%= expense.try(:start) %>
+      </p>
+    </div>
+    <%= number_to_currency(expense.amount, strip_insignificant_zeros: true) %>
+    <%= link_to 'Edit', edit_expense_path(expense), class: "btn btn-success btn-sm", 'data-turbolinks': false  %> 
+    <%= link_to 'x', expenses_sheet_expense_path(@expensesSheet, expense), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+  </p>
+</div>
+
+<!-- comments toolbar -->
+<div class="comment_toolbar">
+  <!-- inc. date and time -->
+  <div class="comment_details">
+    <ul>
+      <li><i class="fa fa-calendar"></i> <%= expense.try(:start) %> </li>
+    </ul>
+  </div><!-- inc. share/reply and love --><div class="comment_tools">
+    <ul>
+      <li><i class="fa fa-share-alt">
+        <!-- link to show -->
+      </i></li>
+    </ul>
+  </div>
+</div>

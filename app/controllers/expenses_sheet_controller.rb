@@ -24,6 +24,7 @@ class ExpensesSheetController < ApplicationController
     # graph
     @expenses_by_category = Hash.new
     @expenses.each do |e|
+      # SELECT category, sum(amount) FROM @expenses GROUP BY Category
       if @expenses_by_category[e.category.name] == nil
         @expenses_by_category[e.category.name] = e.amount
       else

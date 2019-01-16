@@ -1,20 +1,47 @@
 <!-- used in expenses_sheet/_expensesTable -->
 <%= form_with model: @newExpense, url: expenses_sheet_expenses_path(@expensesSheet, @newExpense), method: :post, local: true do |f| %>
-  <td><%= f.submit "Crear", class: "btn btn-primary" %></td>
-  <td><%= f.text_field :name %></td>
-  <td><%= f.text_field :amount, data: {prefix:"$", thousands: ",", precision: 0}%></td>
-  <td>
-    <%=
-      select_tag(
-        :category_id,
-        options_from_collection_for_select(@categories.order(:name), :id, :name)
-      )
-    %>
-  </td>
-  <td><%= f.check_box :owner, {checked: true} %> uncheck to plan expense</td>
-  <td> <%= f.text_field :start, class: "datepicker" %> </td>
-<% end %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= f.text_field :name %></td>
+        <td><%= f.text_field :amount, data: {prefix:"$", thousands: ",", precision: 0}%></td>
+        <td> <%= f.text_field :start, class: "datepicker", style: "width: auto" %> </td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Category</th>
+        <th scope="col">owner</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <%=
+            select_tag(
+              :category_id,
+              options_from_collection_for_select(@categories.order(:name), :id, :name)
+            )
+          %>
+        </td>
+        <td><%= f.check_box :owner, {checked: true} %> uncheck to plan expense</td>
+        <td> <%= f.submit "Crear", class: "btn btn-primary" %></td>
+      </tr>
+    </tbody>
+  </table>
 
+
+<% end %>
 <script>
   $('#expense_amount').maskMoney();
 </script>
@@ -24,7 +51,8 @@
   "turbolinks:load",
   function() {
     var datepicker = $('.datepicker').datetimepicker(
-            { format: 'YYYY/MM/DD',
+            { 
+              format: 'YYYY/MM/DD',
               icons:
               {
                 time: 'fa fa-clock-o',

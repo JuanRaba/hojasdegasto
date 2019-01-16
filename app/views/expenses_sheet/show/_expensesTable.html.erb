@@ -1,32 +1,4 @@
 <!-- used in expenses_sheet/show -->
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Amount</th>
-      <th scope="col">Category</th>
-      <th scope="col">owner</th>
-      <th scope="col">Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <%= render 'expenses/form' %>
-    </tr>
-  <% @expenses.each_with_index do |expense,index| %>
-    <tr>
-      <th scope="row">
-        <%="#{index+1}"%>
-        <%= render expense %>      
-    </tr>    
-  <% end %>
-    <tr>
-      <th scope="row"><%="Total"%></th>
-      <td><%= @expensesSheet.expenses.count() %></td>
-      <td><%= number_to_currency(@expensesSheet.totalSpent, strip_insignificant_zeros: true) %></td>
-      <td></td>      
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+
+
+
