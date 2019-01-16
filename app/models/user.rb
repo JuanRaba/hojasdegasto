@@ -17,4 +17,7 @@ class User < ApplicationRecord
   def show_name
     self.name.present? ? self.name : self.email.split('@').first
   end
+  def show_avatar
+    self.avatar.present? ? self.avatar : 'https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg'
+  end
 end

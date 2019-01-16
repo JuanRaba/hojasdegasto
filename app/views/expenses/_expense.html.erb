@@ -1,7 +1,7 @@
 <!-- current #{user} avatar -->
 <div class="user_avatar">
-  <img src="https://s3.amazonaws.com/uifaces/faces/twitter/manugamero/73.jpg">
   <% if expense.user.present? %>
+    <img src="<%=expense.user.show_avatar%>">
     <%= expense.user.show_name %>
   <% else %>
     <%= link_to 'Claim',expenses_sheet_expense_claim_path(@expensesSheet, expense), class: "btn btn-primary" %>

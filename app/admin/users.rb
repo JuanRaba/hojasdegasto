@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
- permit_params :name, :email, :password, :password_confirmation
+ permit_params :name, :avatar, :email, :password, :password_confirmation
 
   index do
     selectable_column
@@ -13,6 +13,7 @@ ActiveAdmin.register User do
       count = u.expensesSheets.count
       count.zero? ? '' : count
     end
+    column :avatar
     actions
   end
 
@@ -21,6 +22,7 @@ ActiveAdmin.register User do
       f.input :name
       f.input :email
       f.input :password
+      f.input :avatar
     end
     f.actions
   end
