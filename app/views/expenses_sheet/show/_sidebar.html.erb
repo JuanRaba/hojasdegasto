@@ -1,13 +1,13 @@
 <!-- used in expenses_sheet/show -->
+        <button type="button" id="sidebarCollapse" class="btn btn-info" style="position: absolute; margin-left: 3%;z-index: 1">
+            <span>Toggle Sidebar</span>
+        </button>
 <nav id="sidebar">
     <%= render 'shared/alerts'%>
-    <div class="sidebar-header">
+    <div class="sidebar-header" style="margin-top: 50px">
         <a class="navbar-brand" href="<%= root_path %>"><h3>Inicio</h3></a>
         <a class="nav-link"><%= current_user.show_name %></a>
         <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'nav-link' %>
-        <button type="button" id="sidebarCollapse" class="btn btn-info" style="margin-left: 90%">
-            <span>Toggle Sidebar</span>
-        </button>
     </div>
 
     <ul class="list-unstyled components">
@@ -90,6 +90,13 @@
   $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
+
+        //useless but funny code
+        if ( $('#sidebarCollapse').css("marginLeft") == '0px' )
+          $('#sidebarCollapse').css( { marginLeft : "3%" } );
+        else
+          $('#sidebarCollapse').css( { marginLeft : "0%" } );
     });
+
   });
 </script>
