@@ -3,7 +3,7 @@
 
 $LATO: 'Lato', sans-serif;
 
-$GREY: #CCC;
+$GREY: #888;
 $BACKGROUND_GREY: lighten(#EEEDED, 2.5%);
 $SUBTLE_GREY: #F2F2F2;
 $MURKY_GREY: #384148;
@@ -12,8 +12,10 @@ $DARK_GREY: #333;
 $WHITE: #FFF;
 $SUBTLE_WHITE: #F9F9F9;
 
-$BLUE: #6495ED;
+$BLUE: brown;
 $RED: #FF6347;
+
+$CATEGORY_COLOR: $DARK_GREY;
 
 *,
 *:before,
@@ -120,6 +122,7 @@ body {
         border-radius: 5px;
         p {
           padding: 5px;
+          color: $CATEGORY_COLOR
         }
         span {
           color: $BLUE;

@@ -10,7 +10,7 @@
   <p>
     <div class="replied_to">
       <p>
-        <span class="user"> <%= link_to expense.show_name, edit_expense_path(expense), 'data-turbolinks': false  %> :</span>
+        <span class="user"> <%= expense.show_name  %>:</span>
         <%= expense.category.try(:name) %>
         <i class="fa fa-calendar"></i> <%= expense.try(:start) %>
       </p>
