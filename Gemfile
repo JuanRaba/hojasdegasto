@@ -5,7 +5,7 @@ ruby '2.4.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
-gem 'devise', git: 'https://github.com/plataformatec/devise.git'
+gem 'devise'
 gem 'cancancan'
 gem 'sendgrid-ruby'
 # Use postgresql as the database for Active Record
@@ -24,6 +24,8 @@ gem 'chart-js-rails'
 
 # Active admin
 gem 'activeadmin'
+
+#gem 'bundler', '= 1.5.1'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
