@@ -38,6 +38,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# yarn for heroku
+gem 'jquery-ui-rails', '~> 5.0.5'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
