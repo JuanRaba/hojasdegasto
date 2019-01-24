@@ -5,5 +5,8 @@
     "bootstrap4-datetimepicker": "^5.2.3",
     "fullcalendar": "^3.9.0",
     "jquery-maskmoney": "^3.0.2"
+  },
+  "engines": {
+    "yarn": "1.x"
   }
 }
