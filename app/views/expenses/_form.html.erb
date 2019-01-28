@@ -1,18 +1,18 @@
 <!-- used in expenses_sheet/_expensesTable -->
 <%= form_with model: @newExpense, url: expenses_sheet_expenses_path(@expensesSheet, @newExpense), method: :post, local: true do |f| %>
-  <table class="table">
+  <table class="table" style="width: auto">
     <thead>
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Amount</th>
-        <th scope="col">Date</th>
+        <th scope="col" style="width: 12rem">Date</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><%= f.text_field :name %></td>
         <td><%= f.text_field :amount, data: {prefix:"$", thousands: ",", precision: 0}%></td>
-        <td> <%= f.text_field :start, class: "datepicker", style: "width: auto" %> </td>
+        <td> <%= f.text_field :start, class: "datepicker", style: "width: 12rem" %> </td>
       </tr>
     </tbody>
   </table>
@@ -73,7 +73,8 @@
       top: position.top,
       bottom: 'auto',
       left: 'auto',
-      right: position.right
+      right: position.right,
+      width: '12rem'
     });
   });
 </script>
