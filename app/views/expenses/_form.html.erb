@@ -39,42 +39,37 @@
       </tr>
     </tbody>
   </table>
-
-
 <% end %>
+
 <script>
   $('#expense_amount').maskMoney();
 </script>
 
 <script>
-  document.addEventListener(
-  "turbolinks:load",
-  function() {
-    var datepicker = $('.datepicker').datetimepicker(
-            { 
-              format: 'YYYY/MM/DD',
-              icons:
-              {
-                time: 'fa fa-clock-o',
-                date: 'fa fa-calendar',
-                up: 'fa fa-chevron-up',
-                down: 'fa fa-chevron-down',
-                previous: 'fa fa-chevron-left',
-                next: 'fa fa-chevron-right',
-                today: 'fa fa-calendar-check-o',
-                clear: 'fa fa-trash-o',
-                close: 'fa fa-close'
-              }
+  var datepicker = $('.datepicker').datetimepicker(
+          { 
+            format: 'YYYY/MM/DD',
+            icons:
+            {
+              time: 'fa fa-clock-o',
+              date: 'fa fa-calendar',
+              up: 'fa fa-chevron-up',
+              down: 'fa fa-chevron-down',
+              previous: 'fa fa-chevron-left',
+              next: 'fa fa-chevron-right',
+              today: 'fa fa-calendar-check-o',
+              clear: 'fa fa-trash-o',
+              close: 'fa fa-close'
             }
-          );
-    position = datepicker.offset();
-    datepicker.css({
-      position: 'absolute',
-      top: position.top,
-      bottom: 'auto',
-      left: 'auto',
-      right: position.right,
-      width: '12rem'
-    });
+          }
+        );
+  position = datepicker.offset();
+  datepicker.css({
+    position: 'absolute',
+    top: position.top,
+    bottom: 'auto',
+    left: 'auto',
+    right: position.right,
+    width: '12rem'
   });
 </script>

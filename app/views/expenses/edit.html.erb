@@ -1,73 +1,77 @@
+<h1>Editing <%= @expense.show_name %> de <%= @expense.expensesSheet.name %></h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Amount</th>
-      <th scope="col">Category</th>
-      <th scope="col">owner</th>
-      <th scope="col">Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-    <%= form_with model: @expense, url: expense_path(@expense), method: :patch, local: true do |f| %>
-      <td><%= f.text_field :name %></td>
-      <td><%= f.text_field :amount, data: {prefix:"$", thousands: ",", precision: 0}%></td>
-      <td>
-        <%=
-          select_tag(
-            :category_id,
-            options_from_collection_for_select(@categories.order(:name), :id, :name, @expense.category_id)
-          )
-        %>
-      </td>
-      <td><%= f.check_box :owner, {checked: false} %> check to take the expense</td>
-      <td> 
-        <div style="position: relative">
-          <!-- this shit flies away -->
-          <%= f.text_field :start, class: "datepicker", autocomplete: "off" %>    
-        </div> 
-      </td>
-      <td><%= f.submit "Save", class: "btn btn-success" %></td>
-      <td><%= link_to "Back to expensesSheet", expenses_sheet_url(@expense.expensesSheet), class: "btn btn-primary" %></td>
-    <% end %>
-    <tr>
-  </tbody>
-</table>
-
+<%= form_with model: @expense, url: expense_path(@expense), method: :patch, local: true do |f| %>
+  <table class="table" style="width: auto">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Amount</th>
+        <th scope="col" style="width: 12rem">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= f.text_field :name %></td>
+        <td><%= f.text_field :amount, data: {prefix:"$", thousands: ",", precision: 0}%></td>
+        <td> <%= f.text_field :start, class: "datepicker", style: "width: 12rem" %> </td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table" style="width: auto">
+    <thead>
+      <tr>
+        <th scope="col">Category</th>
+        <th scope="col">owner</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <%=
+            select_tag(
+              :category_id,
+              options_from_collection_for_select(@categories.order(:name), :id, :name)
+            )
+          %>
+        </td>
+        <td><%= f.check_box :owner, {checked: false} %> check to take the expense</td>
+        <td><%= f.submit "Save", class: "btn btn-success" %></td>
+        <td><%= link_to "Back to expensesSheet", expenses_sheet_url(@expense.expensesSheet), class: "btn btn-primary" %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
 
 <script>
   $('#expense_amount').maskMoney();
 </script>
 
 <script>
-  document.addEventListener(
-  "turbolinks:load",
-  function() {
-    var datepicker = $('.datepicker').datetimepicker(
-            { format: 'YYYY/MM/DD',
-              icons:
-              {
-                time: 'fa fa-clock-o',
-                date: 'fa fa-calendar',
-                up: 'fa fa-chevron-up',
-                down: 'fa fa-chevron-down',
-                previous: 'fa fa-chevron-left',
-                next: 'fa fa-chevron-right',
-                today: 'fa fa-calendar-check-o',
-                clear: 'fa fa-trash-o',
-                close: 'fa fa-close'
-              }
+  var datepicker = $('.datepicker').datetimepicker(
+          { format: 'YYYY/MM/DD',
+            icons:
+            {
+              time: 'fa fa-clock-o',
+              date: 'fa fa-calendar',
+              up: 'fa fa-chevron-up',
+              down: 'fa fa-chevron-down',
+              previous: 'fa fa-chevron-left',
+              next: 'fa fa-chevron-right',
+              today: 'fa fa-calendar-check-o',
+              clear: 'fa fa-trash-o',
+              close: 'fa fa-close'
             }
-          );
-    position = datepicker.offset();
-    datepicker.css({
-      position: 'absolute',
-      top: position.top,
-      bottom: 'auto',
-      left: 'auto',
-      right: position.right
-    });
+          }
+        );
+  position = datepicker.offset();
+  datepicker.css({
+    position: 'absolute',
+    top: position.top,
+    bottom: 'auto',
+    left: 'auto',
+    right: position.right,
+    width: '10rem'
   });
 </script>
