@@ -1,55 +1,92 @@
-<div class="container">
+<!-- comments container -->
+<div class="comment_block" style="margin-top: 10px">
   <h1>ExpensesSheet#index</h1>
+  <!-- used by #{user} to create a new comment -->
+  <div class="create_new_comment">
+    <div class="input_comment">
+      Add a new expenseSheet
+      <%= render 'expenses_sheet/form' %>
+    </div>
+   </div>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">userSpent</th>
-        <th scope="col">userBalance</th>
-        <th scope="col">expenses2Claim</th>
-        <th scope="col">#asociation</th>
-        <th scope="col">owner</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @expensesSheets.each_with_index do |sheet,index| %>
-      <tr>
-        <th scope="row">
-          <%="#{index+1}"%>
-        </th>
-        <td><%= link_to "#{sheet.name}", sheet, 'data-turbolinks': false %></td>
-        <td><%= number_to_currency(sheet.userSpent(current_user), strip_insignificant_zeros: true) %></td>
-        <td><%= number_to_currency(sheet.userBalance(current_user), strip_insignificant_zeros: true) %></td>
-        <td><%= sheet.expensesCountToClaim() %></td>
-        <td><%= sheet.asociationLevel %></td>
-        <td>
-          <% if current_user == sheet.owner %>
-            You can: <%= link_to 'Edit', edit_expenses_sheet_path(sheet), class: "btn btn-success btn-sm" %> 
-              <%= link_to 'x', sheet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
-          <%else%>
-            <%= sheet.owner.show_name %>
-          <%end%>
-        </td>
-      </tr>    
-    <% end %>
-      <tr>
-        <th scope="row"><%="Total"%></th>
-        <td><%= @expensesSheets.count() %></td>
-        <td><%= number_to_currency(current_user.userSpent, strip_insignificant_zeros: true) %></td>
-        <td><%= number_to_currency(current_user.userBalance, strip_insignificant_zeros: true) %></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
+   <!-- new comment -->
+   <div class="new_comment">
 
-      <tr>
-      <%= form_with model: @newExpensesSheet, url: expenses_sheet_index_path, method: :post, local: true do |f| %>
-        <td><%= f.submit "Crear", class: "btn btn-primary" %></td>
-        <td><%= f.text_field :name %></td>
+    <!-- build comment -->
+    <ul class="user_comment">
+      <!-- current #{user} avatar -->
+      <div class="user_avatar">
+        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg">
+      </div><!-- the comment body --><div class="comment_body">
+        <p>
+          Hello <%= current_user.show_name%>!!
+          <br>
+          You have <%= @expensesSheets.count() %> expensesSheets,
+          where you have spent <%= number_to_currency(current_user.userSpent, strip_insignificant_zeros: true) %>
+          <br>
+          I'm <%= current_user.userBalance < 0 ? 'SORRY' : 'HAPPY' %>
+          to say your Balance is <%= number_to_currency(current_user.userBalance, strip_insignificant_zeros: true, precision: 0) %></td>
+        </p>
+      </div>
+      <!-- comments toolbar -->
+      <div class="comment_toolbar">
+        <!-- inc. date and time -->
+        <div class="comment_details">
+          <ul>
+            <li><i class="fa fa-pencil"></i> <span class="user"><%= current_user.name%></span></li>
+            <li><i class="fa fa-clock-o"></i> <%=time_ago_in_words(current_user.created_at)%></li>
+            <li><i class="fa fa-calendar"></i> <%= current_user.created_at %> </li>
+          </ul>
+        </div><!-- inc. share/reply and love -->
+      </div>
+      <!-- start user replies -->
+      <% @expensesSheets.each do |expensesSheet| %>
+      <li>
+        <!-- current #{user} avatar -->
+        <div class="user_avatar">
+          <img src="<%=expensesSheet.owner.show_avatar%>">
+          <%= expensesSheet.owner.show_name %>
+        </div><!-- the comment body --><div class="comment_body">
+          <p>
+            <div class="replied_to">
+              <p>
+                <span class="user"> <%= link_to "#{expensesSheet.name}", expensesSheet, 'data-turbolinks': false %>:</span>
+                shared with <%= expensesSheet.asociationLevel-1 %> more,
+                userSpent: <%= number_to_currency(expensesSheet.userSpent(current_user), strip_insignificant_zeros: true) %>, 
+                userBalance: <%= number_to_currency(expensesSheet.userBalance(current_user), strip_insignificant_zeros: true, precision: 0) %>
+              </p>
+            </div>
+              <% if expensesSheet.expensesCountToClaim().nonzero? %>
+                <%= link_to "Go Claim #{expensesSheet.expensesCountToClaim()}", expensesSheet, class: "btn btn-primary" %>
+              <% end %>
+              <% if current_user == expensesSheet.owner %>
+                You can: <%= link_to 'Edit', edit_expenses_sheet_path(expensesSheet), class: "btn btn-success btn-sm" %> 
+                  <%= link_to 'x', expensesSheet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+              <%else%>
+                owner: <%= expensesSheet.owner.show_name %>
+              <%end%>
+            </td>
+          </p>
+        </div>
+
+        <!-- comments toolbar -->
+        <div class="comment_toolbar">
+          <!-- inc. date and time -->
+          <div class="comment_details">
+            <ul>
+              <li><i class="fa fa-calendar"></i> <%= expensesSheet.created_at %> </li>
+            </ul>
+          </div><!-- inc. share/reply and love --><div class="comment_tools">
+            <ul>
+              <li><i class="fa fa-share-alt">
+                <!-- link to show -->
+              </i></li>
+            </ul>
+          </div>
+        </div>
+    
+      </li> 
       <% end %>
-      </tr>
-    </tbody>
-  </table>
+    </ul>
+  </div>
 </div>

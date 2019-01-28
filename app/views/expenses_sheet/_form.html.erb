@@ -1,0 +1,16 @@
+<%= form_with model: @newExpensesSheet, url: expenses_sheet_index_path, method: :post, local: true do |f| %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= f.text_field :name %></td>
+        <td><%= f.submit "Crear", class: "btn btn-primary" %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

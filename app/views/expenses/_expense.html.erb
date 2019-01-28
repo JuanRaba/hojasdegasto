@@ -11,11 +11,10 @@
     <div class="replied_to">
       <p>
         <span class="user"> <%= expense.show_name  %>:</span>
-        <%= expense.category.try(:name) %>
-        <i class="fa fa-calendar"></i> <%= expense.try(:start) %>
+        <%= number_to_currency(expense.amount, strip_insignificant_zeros: true) %>
       </p>
     </div>
-    <%= number_to_currency(expense.amount, strip_insignificant_zeros: true) %>
+        <%= expense.category.try(:name) %>
     <%= link_to 'Edit', edit_expense_path(expense), class: "btn btn-success btn-sm", 'data-turbolinks': false  %> 
     <%= link_to 'x', expenses_sheet_expense_path(@expensesSheet, expense), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
   </p>

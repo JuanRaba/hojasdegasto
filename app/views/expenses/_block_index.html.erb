@@ -22,11 +22,11 @@
           Hello <%= current_user.show_name%>!!
            <%= "We have planed expenses to claim for #{number_to_currency(@expensesSheet.totalUnpaid)}" if @expensesSheet.totalUnpaid > 0 %>
           <br>
-          In this expesesSheet your have Spent <%= number_to_currency(@expensesSheet.userSpent(current_user)) %>,
-          and we <%= @expensesSheet.asociationLevel %> have spent <%= number_to_currency(@expensesSheet.totalSpent) %>,
+          In this expesesSheet your have Spent <%= number_to_currency(@expensesSheet.userSpent(current_user), precision: 0) %>,
+          and we <%= @expensesSheet.asociationLevel %> have spent <%= number_to_currency(@expensesSheet.totalSpent, precision: 0) %>,
           <br>
           I'm <%= @expensesSheet.userBalance(current_user) < 0 ? 'SORRY' : 'HAPPY' %>
-          to say your Balance is <%= number_to_currency(@expensesSheet.userBalance(current_user)) %>            
+          to say your Balance is <%= number_to_currency(@expensesSheet.userBalance(current_user), precision: 0) %>            
         </p>
       </div>
       <!-- comments toolbar -->
