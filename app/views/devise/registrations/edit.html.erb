@@ -1,17 +1,15 @@
+<div class="container-fluid total users-login">
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-md-8">
+      <div class="card">
+        <div class="card-body">
+
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :avatar %><br />
-    <%= f.text_field :avatar %>
-  </div>
+  <%= render 'extra_fields', f:f %>
 
   <div class="field">
     <%= f.label :email %><br />
@@ -51,3 +49,9 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
