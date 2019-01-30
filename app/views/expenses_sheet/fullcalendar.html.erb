@@ -1,5 +1,10 @@
-<h1><%= link_to "#{@expensesSheet.name}", @expensesSheet, 'data-turbolinks': false %><#fullcalendar</h1>
-
+<div  style="float: left;">
+  <%= link_to "Back to expensesSheet", expenses_sheet_url(@expensesSheet), class: "btn btn-primary" %>
+</div>
+<h1>
+  fullcalendar
+  <%= link_to "#{@expensesSheet.name}", @expensesSheet, 'data-turbolinks': false %>
+</h1>
 <div id='calendar'></div>
 
 <script>
