@@ -6,8 +6,6 @@
     <%= render 'shared/alerts'%>
     <div class="sidebar-header" style="margin-top: 50px">
         <a class="navbar-brand" href="<%= root_path %>"><h3>Inicio</h3></a>
-        <a class="nav-link"><%= current_user.show_name %></a>
-        <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'nav-link' %>
     </div>
 
     <ul class="list-unstyled components">
@@ -16,8 +14,22 @@
             <%= @expensesSheet.name %>
           </a>
         </li>
+        <li class="active">
+            <a  class="dropdown-toggle">Graphs</a>
+            <ul class="list-unstyled" id="pageGraphs">
+                <li>
+                    <a id="showBarButton" onclick="$('.hideable').hide(); $('#graficBar').show();">Bar</a>
+                </li>
+                <li>
+                    <a id="showPieButton" onclick="$('.hideable').hide(); $('#graficPie').show();">Pie</a>
+                </li>
+                <li>
+                    <a id="showDoughnutButton" onclick="$('.hideable').hide(); $('#graficDoughnut').show();">Doughnut</a>
+                </li>
+            </ul>
+        </li>
         <li>
-          <%= link_to 'fullcalendar', expenses_sheet_fullcalendar_path(@expensesSheet) %>
+          <%= link_to 'Fullcalendar', expenses_sheet_fullcalendar_path(@expensesSheet) %>
         </li>
         <li class="active">
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Resumen:</a>
@@ -53,21 +65,11 @@
                 </li>
             </ul>
         </li>
-        <li class="active">
-            <a href="#pageGraphs" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Graphs</a>
-            <ul class="collapse list-unstyled" id="pageGraphs">
-                <li>
-                    <a id="showBarButton" onclick="$('.hideable').hide(); $('#graficBar').show();">Bar</a>
-                </li>
-                <li>
-                    <a id="showPieButton" onclick="$('.hideable').hide(); $('#graficPie').show();">Pie</a>
-                </li>
-                <li>
-                    <a id="showDoughnutButton" onclick="$('.hideable').hide(); $('#graficDoughnut').show();">Doughnut</a>
-                </li>
-            </ul>
-        </li>
     </ul>
+    <div class="sidebar-header" style="margin-top: -20px">
+        <a class="nav-link"><%= current_user.show_name %></a>
+        <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'nav-link' %>
+    </div>
 </nav>
 <script>
     function hashCode(str) { // java String#hashCode
