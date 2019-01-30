@@ -19,7 +19,7 @@ class ExpensesController < ApplicationController
         format.html { redirect_to expenses_sheet_url(@newExpense.expensesSheet), notice: 'newExpense was successfully created.' }
         format.json { render :show, status: :created, location: @newExpense }
       else
-        format.html { redirect_to expenses_sheet_url(@newExpense.expensesSheet), notice: "newExpense was not created.#{@newExpense.errors.messages}" }
+        format.html { redirect_to expenses_sheet_url(@newExpense.expensesSheet), notice: "newExpense was not created.#{@newExpense.errors.full_messages}" }
         format.json { render json: @newExpense.errors, status: :unprocessable_entity }
       end
     end
@@ -34,7 +34,7 @@ class ExpensesController < ApplicationController
         format.html { redirect_to expenses_sheet_url(@expense.expensesSheet), notice: 'expense was successfully claimed.' }
         format.json { render :show, status: :created, location: @expense }
       else
-        format.html { redirect_to expenses_sheet_url(@expense.expensesSheet), notice: "expense was not created.#{@expense.errors.messages}" }
+        format.html { redirect_to expenses_sheet_url(@expense.expensesSheet), notice: "expense was not created.#{@expense.errors.full_messages}" }
         format.json { render json: @expense.errors, status: :unprocessable_entity }
       end
     end

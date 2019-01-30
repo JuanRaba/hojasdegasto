@@ -50,7 +50,7 @@ class ExpensesSheetController < ApplicationController
         format.html { redirect_to root_path, notice: 'expensesSheet name was successfully changed.' }
         format.json { render :show, status: :created, location: @expensesSheet }
       else
-        format.html { redirect_to root_path, alert: "newExpensesSheet name was not changed. #{@expensesSheet.errors.messages}" }
+        format.html { redirect_to root_path, alert: "newExpensesSheet name was not changed. #{@expensesSheet.errors.full_messages}" }
         format.json { render json: @expensesSheet.errors, status: :unprocessable_entity }
       end
     end
@@ -67,13 +67,12 @@ class ExpensesSheetController < ApplicationController
         )
         format.html { redirect_to root_path, notice: 'newExpensesSheet was successfully created.' }
         format.json { render :show, status: :created, location: @newExpensesSheet }
-      else
-        format.html { redirect_to root_path, alert: "newExpensesSheet was not created. #{@newExpensesSheet.errors.messages}" }
-        format.json { render json: @newExpensesSheet.errors, status: :unprocessable_entity }
+      else   
+        format.html { redirect_to root_path, alert: "newExpensesSheet was not created. #{@newExpensesSheet.errors.full_messages}" }
+        format.json { render json: @newExpensesSheet.errors, status: :unprocessable_entity } 
       end
     end
   end
-
 
   def destroy
     authorize! :destroy, @expensesSheet

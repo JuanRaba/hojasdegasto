@@ -16,11 +16,13 @@ class AsociationsController < ApplicationController
         format.html { redirect_to @expensesSheet, notice: 'newAsociation was successfully created.' }
         format.json { render :show, status: :created, location: @expensesSheet }
       else
-        sendgrid_result = sendmail(params[:asociation][:email])
+        alert_message = "newAsociation was not created. #{@newAsociation.errors.full_messages}"
         # improve error parsing this
         # @newAsociation.errors.details == {:user_id=>[{:error=>:taken, :value=>2}]}
-        alert_message = "newAsociation was not created. #{@newAsociation.errors.messages}"
-        alert_message += "A mail was sent to invite, status_code:#{sendgrid_result[0]}, sent_description:#{sendgrid_result[1]}"
+        if @newAsociation.errors.messages[:user_id] != ["has already been taken"]
+          sendgrid_result = sendmail(params[:asociation][:email])
+          alert_message += "A mail was sent to invite, status_code:#{sendgrid_result[0]}, sent_description:#{sendgrid_result[1]}"
+        end
         format.html { redirect_to @expensesSheet, alert: alert_message }
         format.json { render json: @newAsociation.errors, status: :unprocessable_entity }
       end
