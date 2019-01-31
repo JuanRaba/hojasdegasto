@@ -11,7 +11,6 @@
       <div class="user_avatar">
         <img src="https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg">
       </div><!-- the comment body --><div class="comment_body">
-        <p>
           Hello <%= current_user.show_name%>!!
           <br>
           You have <%= @expensesSheets.count() %> expensesSheets,
@@ -19,7 +18,6 @@
           <br>
           I'm <%= current_user.userBalance < 0 ? 'SORRY' : 'HAPPY' %>
           to say your Balance is <%= number_to_currency(current_user.userBalance, strip_insignificant_zeros: true, precision: 0) %></td>
-        </p>
       </div>
       <!-- comments toolbar -->
       <div class="comment_toolbar">
@@ -40,8 +38,7 @@
           <img src="<%=expensesSheet.owner.show_avatar%>">
           <%= expensesSheet.owner.show_name %>
         </div><!-- the comment body --><div class="comment_body">
-          <p>
-            <div class="replied_to">
+            <div class="replied_to" >
               <p>
                 <span class="user"> <%= link_to "#{expensesSheet.name}", expensesSheet, 'data-turbolinks': false %>:</span>
                 shared with <%= expensesSheet.asociationLevel-1 %> more,
@@ -59,7 +56,6 @@
                 owner: <%= expensesSheet.owner.show_name %>
               <%end%>
             </td>
-          </p>
         </div>
 
         <!-- comments toolbar -->
