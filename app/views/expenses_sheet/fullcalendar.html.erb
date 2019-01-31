@@ -13,6 +13,11 @@
   })
   document.addEventListener("turbolinks:load", function() {
     $('#calendar').fullCalendar({
+      header: {
+        left: 'month,listWeek',
+        center: 'title',
+        right: 'prevYear,prev,prevWeek,next,nextYear'
+      },
       firstDay: 1,
       events: <%= raw @expenses_calendar.to_json() %>
     });

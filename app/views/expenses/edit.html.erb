@@ -1,4 +1,4 @@
-<h1>Editing <%= @expense.show_name %> de <%= @expense.expensesSheet.name %></h1>
+<h1>Editando  <%= @expense.show_name %> </h1>
 
 <%= form_with model: @expense, url: expense_path(@expense), method: :patch, local: true do |f| %>
   <table class="table" style="width: auto">
@@ -32,7 +32,7 @@
           <%=
             select_tag(
               :category_id,
-              options_from_collection_for_select(@categories.order(:name), :id, :name)
+              options_from_collection_for_select(@categories.order(:name), :id, :name, @expense.category_id)
             )
           %>
         </td>
