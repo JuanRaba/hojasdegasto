@@ -9,7 +9,7 @@
       data: {
           labels: <%=@expenses.map { |e| e.show_name }.to_json.html_safe%>,
           datasets: [{
-              label: '<%=@expensesSheet.show_name.upcase%>',
+              label: '<%=@expensesSheet.name.upcase%>',
               data: <%=@expenses.map { |e| e.amount.to_i }%>,
               backgroundColor: [
                   'rgba(255, 99, 132, 1)',

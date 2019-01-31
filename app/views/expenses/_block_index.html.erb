@@ -22,11 +22,15 @@
           Hello <%= current_user.show_name%>!!
            <%= "We have planed expenses to claim for #{number_to_currency(@expensesSheet.totalUnpaid)}" if @expensesSheet.totalUnpaid > 0 %>
           <br>
-          In this expesesSheet your have Spent <%= number_to_currency(@expensesSheet.userSpent(current_user), precision: 0) %>,
+          In this expesesSheet your have Spent <%= number_to_currency(@expensesSheet.userSpent(current_user), precision: 0) %>;
+          <% if @expensesSheet.asociationLevel > 1 %> 
           and we <%= @expensesSheet.asociationLevel %> have spent <%= number_to_currency(@expensesSheet.totalSpent, precision: 0) %>,
           <br>
           I'm <%= @expensesSheet.userBalance(current_user) < 0 ? 'SORRY' : 'HAPPY' %>
-          to say your Balance is <%= number_to_currency(@expensesSheet.userBalance(current_user), precision: 0) %>            
+          to say your Balance is <%= number_to_currency(@expensesSheet.userBalance(current_user), precision: 0) %>
+          <% else %>
+          this expensesSheet isn't shared as AsociationLevel:1         
+          <% end %>
         </p>
       </div>
       <!-- comments toolbar -->
