@@ -2,6 +2,7 @@
 <canvas id="myBarChart" width="400" height="400"></canvas>
 <script>
   Chart.defaults.global.defaultFontStyle = 'bold'
+  Chart.defaults.global.defaultFontColor = 'black'
 
   var ctx = document.getElementById("myBarChart");
   var myChart = new Chart(ctx, {
@@ -33,5 +34,14 @@
               ]
           }]
       },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
   });
 </script>
