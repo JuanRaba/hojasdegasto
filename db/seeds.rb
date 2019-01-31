@@ -9,4 +9,28 @@
 #Expense.destroy_all
 #Asociation.destroy_all
 #ExpensesSheet.destroy_all
-AdminUser.create!(email: 'admin@rabanillo.com', password: 'admin1234', password_confirmation: 'admin1234')
+u = User.first
+e = ExpensesSheet.create!(
+  name: 'hoja_seed',
+  owner: u
+  )
+c = Category.first_or_create!(
+  name: '---'
+  )
+a = Asociation.create!(
+  user: u,
+  expensesSheet: e
+  )
+10.times do |j|
+  gasto = e.expenses.build(
+    amount: j,
+    user: u,
+    expensesSheet: e,
+    category: c,
+    start: Time.now
+  )
+  gasto.save!
+end
+
+
+#AdminUser.create!(email: 'admin@rabanillo.com', password: 'admin1234', password_confirmation: 'admin1234') if Rails.env.development?
