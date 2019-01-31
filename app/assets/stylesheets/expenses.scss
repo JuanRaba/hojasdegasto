@@ -72,6 +72,14 @@ body {
     padding: 20px 0;
 
     .input_comment {
+      .title{
+        text-align: center;
+        font-size: $FONTSIZE_INPUTCOMMENT;
+      }
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+
+
       display: inline-block;
       vertical-align: middle;
 
@@ -151,7 +159,7 @@ body {
           display: inline-block;
           padding: 5px;
           font-size: $FONTSIZE_COMMENTOOLBARLI;
-          color: lighten($GREY, 5%);
+          color: lighten(black, 5%);
           &:hover {
             cursor: pointer; 
           }

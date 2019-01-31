@@ -1,7 +1,7 @@
 <!-- used in expenses_sheet/show -->
         <button type="button" id="sidebarCollapse" class="btn btn-info"
         style="position: absolute; margin-left: 250px;margin-top: 45px;z-index: 1">
-            <span>Toggle Sidebar</span>
+            <span><<>></span>
         </button>
 <nav id="sidebar">
     <%= render 'shared/alerts'%>
@@ -16,47 +16,30 @@
           </a>
         </li>
         <li class="active">
-            <a  class="dropdown-toggle">Graphs</a>
+            <a  class="dropdown-toggle">Gráficas</a>
             <ul class="list-unstyled" id="pageGraphs">
                 <li>
-                    <a id="showBarButton" onclick="$('.hideable').hide(); $('#graficBar').show();">Bar</a>
+                    <a id="showBarButton" onclick="$('.hideable').hide(); $('#graficBar').show();">Barras de Gastos</a>
                 </li>
                 <li>
-                    <a id="showPieButton" onclick="$('.hideable').hide(); $('#graficPie').show();">Pie</a>
+                    <a id="showPieButton" onclick="$('.hideable').hide(); $('#graficPie').show();">Tarta de Usuarios</a>
                 </li>
                 <li>
-                    <a id="showDoughnutButton" onclick="$('.hideable').hide(); $('#graficDoughnut').show();">Doughnut</a>
+                    <a id="showDoughnutButton" onclick="$('.hideable').hide(); $('#graficDoughnut').show();">Doughnut de Categorías</a>
                 </li>
             </ul>
         </li>
         <li>
-          <%= link_to 'Fullcalendar', expenses_sheet_fullcalendar_path(@expensesSheet) %>
+          <%= link_to 'Ver Calendario', expenses_sheet_fullcalendar_path(@expensesSheet) %>
         </li>
         <li class="active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Resumen:</a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-                <li>
-                    <a href="#">userSpent: <%= number_to_currency(@expensesSheet.userSpent(current_user)) %></a>
-                </li>
-                <li>
-                    <a href="#">userBalance: <%= number_to_currency(@expensesSheet.userBalance(current_user)) %></a>
-                </li>
-                <li>
-                    <a href="#">totalUnpaid: <%= number_to_currency(@expensesSheet.totalUnpaid) %></a>
-                </li>
-                <li>
-                    <a href="#">owner: <%= @expensesSheet.owner.show_name %></a>
-                </li>
-            </ul>
-        </li>
-        <li class="active">
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">AsociationLevel: <%= @expensesSheet.asociationLevel %></a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">Colaboradores: <%= @expensesSheet.asociationLevel %></a>
+            <ul class="list-unstyled" id="pageSubmenu">
                 <% @expensesSheet.asociations.each do |asociation| %>
                   <li>
-                    <a href="#">
+                    <p>
                         <%= asociation.user.show_name %>
-                    </a>
+                    </p >
                   </li>
                 <% end %>
                 <li>

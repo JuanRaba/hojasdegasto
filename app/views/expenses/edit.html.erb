@@ -4,9 +4,9 @@
   <table class="table" style="width: auto">
     <thead>
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Amount</th>
-        <th scope="col" style="width: 12rem">Date</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col" style="width: 12rem">Fecha</th>
       </tr>
     </thead>
     <tbody>
@@ -20,8 +20,8 @@
   <table class="table" style="width: auto">
     <thead>
       <tr>
-        <th scope="col">Category</th>
-        <th scope="col">owner</th>
+        <th scope="col">Categoría</th>
+        <th scope="col">Dueño</th>
         <th scope="col"></th>
         <th scope="col"></th>
       </tr>
@@ -36,9 +36,9 @@
             )
           %>
         </td>
-        <td><%= f.check_box :owner, {checked: false} %> check to take the expense</td>
-        <td><%= f.submit "Save", class: "btn btn-success" %></td>
-        <td><%= link_to "Back to expensesSheet", expenses_sheet_url(@expense.expensesSheet), class: "btn btn-primary" %></td>
+        <td><%= f.check_box :owner, {checked: false} %> marcar para tomar el gasto</td>
+        <td><%= f.submit "Guardar", class: "btn btn-success" %></td>
+        <td><%= link_to "Volver a hojaDeGasto", expenses_sheet_url(@expense.expensesSheet), class: "btn btn-primary" %></td>
       </tr>
     </tbody>
   </table>

@@ -1,11 +1,11 @@
-<!-- used in expenses_sheet/_expensesTable -->
+<!-- used in expenses/_block_index -->
 <%= form_with model: @newExpense, url: expenses_sheet_expenses_path(@expensesSheet, @newExpense), method: :post, local: true do |f| %>
   <table class="table" style="width: auto">
     <thead>
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Amount</th>
-        <th scope="col" style="width: 12rem">Date</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col" style="width: 12rem">Fecha</th>
       </tr>
     </thead>
     <tbody>
@@ -19,8 +19,8 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Category</th>
-        <th scope="col">owner</th>
+        <th scope="col">Categoría</th>
+        <th scope="col">Dueño</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -34,7 +34,7 @@
             )
           %>
         </td>
-        <td><%= f.check_box :owner, {checked: true} %> uncheck to plan expense</td>
+        <td><%= f.check_box :owner, {checked: true} %> desmarcar para planear a futuro</td>
         <td> <%= f.submit "Crear", class: "btn btn-primary" %></td>
       </tr>
     </tbody>

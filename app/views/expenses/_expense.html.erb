@@ -4,7 +4,7 @@
     <img src="<%=expense.user.show_avatar%>">
     <%= expense.user.show_name %>
   <% else %>
-    <%= link_to 'Claim',expenses_sheet_expense_claim_path(@expensesSheet, expense), class: "btn btn-primary" %>
+    <%= link_to 'Asumir',expenses_sheet_expense_claim_path(@expensesSheet, expense), class: "btn btn-primary" %>
   <% end %>
 </div><!-- the comment body --><div class="comment_body">
     <div class="replied_to">
@@ -14,8 +14,8 @@
       </p>
     </div>
     <%= expense.category.try(:name) %>
-    <%= link_to 'Edit', edit_expense_path(expense), class: "btn btn-success btn-sm", 'data-turbolinks': false  %> 
-    <%= link_to 'x', expenses_sheet_expense_path(@expensesSheet, expense), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+    <%= link_to 'Editar', edit_expense_path(expense), class: "btn btn-success btn-sm", 'data-turbolinks': false  %> 
+    <%= link_to 'x', expenses_sheet_expense_path(@expensesSheet, expense), method: :delete, data: { confirm: '¿Estas seguro de borrarlo?' }, class: "btn btn-danger btn-sm" %>
 </div>
 
 <!-- comments toolbar -->

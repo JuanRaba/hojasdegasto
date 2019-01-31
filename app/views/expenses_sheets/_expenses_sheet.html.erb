@@ -1,0 +1,44 @@
+<li>
+  <!-- current #{user} avatar -->
+  <div class="user_avatar">
+    <img src="<%=expenses_sheet.owner.show_avatar%>">
+    <%= expenses_sheet.owner.show_name %>
+  </div><!-- the comment body --><div class="comment_body">
+      <div class="replied_to" >
+        <p>
+          <span class="user"> <%= link_to "#{expenses_sheet.name}", expenses_sheet, 'data-turbolinks': false %>:</span>
+          gastaste: <%= number_to_currency(expenses_sheet.userSpent(current_user), strip_insignificant_zeros: true) %>, 
+          balance: <%= number_to_currency(expenses_sheet.userBalance(current_user), strip_insignificant_zeros: true, precision: 0) %>
+        </p>
+      </div>
+        Compartida con <%= expenses_sheet.asociationLevel-1 %> más
+        <% if expenses_sheet.expensesCountToClaim().nonzero? %>
+          <%= link_to "Entrar para asociar #{expenses_sheet.expensesCountToClaim()} gasto", expenses_sheet, class: "btn btn-primary" %>
+        <%else%>
+          <%= link_to "Añadir gastos", expenses_sheet, class: "btn btn-primary btn-sm" %>
+        <% end %>
+        <% if current_user == expenses_sheet.owner %>
+          <%= link_to 'Editar', edit_expenses_sheet_path(expenses_sheet), class: "btn btn-success btn-sm" %> 
+          <%= link_to 'x', expenses_sheet, method: :delete, data: { confirm: '¿Estas seguro de borrarlo?' }, class: "btn btn-danger btn-sm" %>
+        <%else%>
+          Dueño: <%= expenses_sheet.owner.show_name %>
+        <%end%>
+      </td>
+  </div>
+
+  <!-- comments toolbar -->
+  <div class="comment_toolbar">
+    <!-- inc. date and time -->
+    <div class="comment_details">
+      <ul>
+        <li><i class="fa fa-calendar"></i> <%= expenses_sheet.created_at.to_date %> </li>
+      </ul>
+    </div><!-- inc. share/reply and love --><div class="comment_tools">
+      <ul>
+        <li><i class="fa fa-share-alt">
+          <!-- link to show -->
+        </i></li>
+      </ul>
+    </div>
+  </div>
+</li> 

@@ -93,6 +93,19 @@
         background: #fff;
     }
 
+    #sidebar ul li ul li p{
+        color: #fff;
+        margin-bottom: 0px;
+        background: #6d7fcc;
+        padding-left: 30px !important;
+    }
+    #sidebar ul li ul li form{
+        color: #fff;
+        margin-bottom: 0px;
+        background: #6d7fcc;
+        padding-left: 30px !important;
+    }
+
     #sidebar ul li.active > a, a[aria-expanded="true"] {
         color: #fff;
         background: #6d7fcc;

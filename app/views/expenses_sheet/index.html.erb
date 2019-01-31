@@ -11,13 +11,13 @@
       <div class="user_avatar">
         <img src="https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg">
       </div><!-- the comment body --><div class="comment_body">
-          Hello <%= current_user.show_name%>!!
+          Hola <%= current_user.show_name%>!!
           <br>
-          You have <%= @expensesSheets.count() %> expensesSheets,
-          where you have spent <%= number_to_currency(current_user.userSpent, strip_insignificant_zeros: true) %>
+          Tiene <%= @expensesSheets.count() %> hojasDeGasto,
+          en donde ha gastado <%= number_to_currency(current_user.userSpent, strip_insignificant_zeros: true) %>
           <br>
-          I'm <%= current_user.userBalance < 0 ? 'SORRY' : 'HAPPY' %>
-          to say your Balance is <%= number_to_currency(current_user.userBalance, strip_insignificant_zeros: true, precision: 0) %></td>
+          <%= current_user.userBalance < 0 ? 'SIENTO INFORMARLE que' : 'FELICIDADES' %>
+          su balance es <%= number_to_currency(current_user.userBalance, strip_insignificant_zeros: true, precision: 0) %></td>
       </div>
       <!-- comments toolbar -->
       <div class="comment_toolbar">
@@ -25,59 +25,17 @@
         <div class="comment_details">
           <ul>
             <li><i class="fa fa-pencil"></i> <span class="user"><%= current_user.name%></span></li>
-            <li><i class="fa fa-clock-o"></i> <%=time_ago_in_words(current_user.created_at)%></li>
-            <li><i class="fa fa-calendar"></i> <%= current_user.created_at %> </li>
+            <li><i class="fa fa-clock-o"></i> registrado hace <%=time_ago_in_words(current_user.created_at)%></li>
+            <li><i class="fa fa-calendar"></i> con fecha <%= current_user.created_at.to_date %> </li>
           </ul>
         </div><!-- inc. share/reply and love -->
       </div>
       <!-- start user replies -->
       <% @expensesSheets.each do |expensesSheet| %>
-      <li>
-        <!-- current #{user} avatar -->
-        <div class="user_avatar">
-          <img src="<%=expensesSheet.owner.show_avatar%>">
-          <%= expensesSheet.owner.show_name %>
-        </div><!-- the comment body --><div class="comment_body">
-            <div class="replied_to" >
-              <p>
-                <span class="user"> <%= link_to "#{expensesSheet.name}", expensesSheet, 'data-turbolinks': false %>:</span>
-                userSpent: <%= number_to_currency(expensesSheet.userSpent(current_user), strip_insignificant_zeros: true) %>, 
-                userBalance: <%= number_to_currency(expensesSheet.userBalance(current_user), strip_insignificant_zeros: true, precision: 0) %>
-              </p>
-            </div>
-
-                shared with <%= expensesSheet.asociationLevel-1 %> more
-              <% if expensesSheet.expensesCountToClaim().nonzero? %>
-                <%= link_to "Go Claim #{expensesSheet.expensesCountToClaim()}", expensesSheet, class: "btn btn-primary" %>
-              <%else%>
-                <%= link_to "Add Expenses", expensesSheet, class: "btn btn-primary btn-sm" %>
-              <% end %>
-              <% if current_user == expensesSheet.owner %>
-                <%= link_to 'Edit', edit_expenses_sheet_path(expensesSheet), class: "btn btn-success btn-sm" %> 
-                <%= link_to 'x', expensesSheet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
-              <%else%>
-                owner: <%= expensesSheet.owner.show_name %>
-              <%end%>
-            </td>
-        </div>
-
-        <!-- comments toolbar -->
-        <div class="comment_toolbar">
-          <!-- inc. date and time -->
-          <div class="comment_details">
-            <ul>
-              <li><i class="fa fa-calendar"></i> <%= expensesSheet.created_at %> </li>
-            </ul>
-          </div><!-- inc. share/reply and love --><div class="comment_tools">
-            <ul>
-              <li><i class="fa fa-share-alt">
-                <!-- link to show -->
-              </i></li>
-            </ul>
-          </div>
-        </div>
-    
-      </li> 
+      <!-- render expenseSheet not working :( -->
+      
+          <%= render expensesSheet %>     
+      <!-- render expenseSheet not working :( -->
       <% end %>
     </ul>
   </div>
@@ -85,7 +43,9 @@
   <!-- used by #{user} to create a new comment -->
   <div class="create_new_comment">
     <div class="input_comment">
-      Add a new expenseSheet
+      <div class="title">
+        Crear una nueva hojaDeGastos
+      </div>
       <%= render 'expenses_sheet/form' %>
     </div>
   </div>
