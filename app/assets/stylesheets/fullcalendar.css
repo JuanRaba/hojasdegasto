@@ -1,0 +1,6 @@
+body .fc {
+/* extra precedence to overcome jqui */
+font-weight: bold; }
+
+.fc td {
+border-width: 3px;}
