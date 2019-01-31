@@ -41,13 +41,16 @@
             <div class="replied_to" >
               <p>
                 <span class="user"> <%= link_to "#{expensesSheet.name}", expensesSheet, 'data-turbolinks': false %>:</span>
-                shared with <%= expensesSheet.asociationLevel-1 %> more,
                 userSpent: <%= number_to_currency(expensesSheet.userSpent(current_user), strip_insignificant_zeros: true) %>, 
                 userBalance: <%= number_to_currency(expensesSheet.userBalance(current_user), strip_insignificant_zeros: true, precision: 0) %>
               </p>
             </div>
+
+                shared with <%= expensesSheet.asociationLevel-1 %> more
               <% if expensesSheet.expensesCountToClaim().nonzero? %>
                 <%= link_to "Go Claim #{expensesSheet.expensesCountToClaim()}", expensesSheet, class: "btn btn-primary" %>
+              <%else%>
+                <%= link_to "Add Expenses", expensesSheet, class: "btn btn-primary btn-sm" %>
               <% end %>
               <% if current_user == expensesSheet.owner %>
                 <%= link_to 'Edit', edit_expenses_sheet_path(expensesSheet), class: "btn btn-success btn-sm" %> 
