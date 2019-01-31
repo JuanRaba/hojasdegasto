@@ -3,4 +3,8 @@ body .fc {
 font-weight: bold; }
 
 .fc td {
-border-width: 3px;}
+border-width: 3px;
+border-color: crimson}
+
+.fc-unthemed td.fc-today {
+  background: salmon; }

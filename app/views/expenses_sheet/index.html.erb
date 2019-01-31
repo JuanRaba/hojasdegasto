@@ -53,8 +53,8 @@
                 <%= link_to "Go Claim #{expensesSheet.expensesCountToClaim()}", expensesSheet, class: "btn btn-primary" %>
               <% end %>
               <% if current_user == expensesSheet.owner %>
-                You can: <%= link_to 'Edit', edit_expenses_sheet_path(expensesSheet), class: "btn btn-success btn-sm" %> 
-                  <%= link_to 'x', expensesSheet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+                <%= link_to 'Edit', edit_expenses_sheet_path(expensesSheet), class: "btn btn-success btn-sm" %> 
+                <%= link_to 'x', expensesSheet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
               <%else%>
                 owner: <%= expensesSheet.owner.show_name %>
               <%end%>
