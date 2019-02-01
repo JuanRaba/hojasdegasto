@@ -34,7 +34,7 @@ class AsociationsController < ApplicationController
     from = Email.new(email: current_user.email)
     subject = 'Hello World from Hojas de Gasto!'
     to = Email.new(email: to_email)
-    content = Content.new(type: 'text/plain', value: 'Hello, Email! Register to enjoy https://hojasdegasto.herokuapp.com/users/sign_in')
+    content = Content.new(type: 'text/plain', value: 'Hello, Email! Register to enjoy https://hojasdegasto.herokuapp.com/users/sign_up')
     mail = Mail.new(from, subject, to, content)
 
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_HOJASDEGASTO'])

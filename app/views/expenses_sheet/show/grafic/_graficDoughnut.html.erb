@@ -4,6 +4,7 @@
   var ctx = document.getElementById("myDoughnutChart");
   var myChart = new Chart(ctx, {
       type: 'doughnut',
+      pieSliceText: 'value-and-percentage',
       data: {
           labels: <%=@expenses_by_category.keys.to_json.html_safe%>,
           datasets: [{
