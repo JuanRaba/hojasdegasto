@@ -1,47 +1,65 @@
 <h1>Editando  <%= @expense.show_name %> </h1>
-
 <%= form_with model: @expense, url: expense_path(@expense), method: :patch, local: true do |f| %>
-  <table class="table" style="width: auto">
-    <thead>
-      <tr>
-        <th scope="col">Nombre</th>
-        <th scope="col">Cantidad</th>
-        <th scope="col" style="width: 12rem">Fecha</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= f.text_field :name %></td>
-        <td><%= f.text_field :amount, data: {prefix:"$", thousands: ",", precision: 0}%></td>
-        <td> <%= f.text_field :start, class: "datepicker", style: "width: 12rem" %> </td>
-      </tr>
-    </tbody>
-  </table>
-  <table class="table" style="width: auto">
-    <thead>
-      <tr>
-        <th scope="col">Categoría</th>
-        <th scope="col">Dueño</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <%=
-            select_tag(
-              :category_id,
-              options_from_collection_for_select(@categories.order(:name), :id, :name, @expense.category_id)
-            )
-          %>
-        </td>
-        <td><%= f.check_box :owner, {checked: false} %> marcar para tomar el gasto</td>
-        <td><%= f.submit "Guardar", class: "btn btn-success" %></td>
-        <td><%= link_to "Volver a hojaDeGasto", expenses_sheet_url(@expense.expensesSheet), class: "btn btn-primary" %></td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container-fluid total expenses-container">
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-md-10">
+      <div class="card">
+        <div class="card-body">
+          <div class="container-fluid" style="background-color: moccasin">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <%= f.label :nombre %><br />
+                  <%= f.text_field :name %>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <%= f.label :cuantia %><br />
+                  <%= f.text_field :amount, data: {prefix:"$", thousands: ",", precision: 0}%>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <%= f.label :categoria %><br />
+                  <%=
+                    select_tag(
+                      :category_id,
+                      options_from_collection_for_select(@categories.order(:name), :id, :name, @expense.category_id)
+                    )
+                  %>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <%= f.label :dueño %><br />
+                  <%= f.check_box :owner, {checked: false} %> marcar para tomar el gasto      
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <%= f.label :fecha %><br />
+                  <%= f.text_field :start, class: "datepicker", style: "width: 12rem" %>
+                </div>
+              </div>
+              <div class="col">
+                <div class="actions">
+                  <%= f.submit "Guardar", class:"btn btn-primary" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<%= link_to "Volver a hojaDeGasto", expenses_sheet_url(@expense.expensesSheet), class: "btn btn-success" %>
 <% end %>
 
 <script>
@@ -65,13 +83,7 @@
             }
           }
         );
-  position = datepicker.offset();
   datepicker.css({
-    position: 'absolute',
-    top: position.top,
-    bottom: 'auto',
-    left: 'auto',
-    right: position.right,
     width: '10rem'
   });
 </script>
