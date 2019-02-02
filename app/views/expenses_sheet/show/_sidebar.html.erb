@@ -1,14 +1,9 @@
 <!-- used in expenses_sheet/show -->
         <button type="button" id="sidebarCollapse" class="btn btn-info"
-        style="position: absolute; margin-left: 250px;margin-top: 45px;z-index: 1">
+        style="position: absolute; margin-left: 250px;margin-top: 55px;z-index: 1">
             <span><<>></span>
         </button>
 <nav id="sidebar">
-    <%= render 'shared/alerts'%>
-    <div class="sidebar-header" style="margin-top: 50px">
-        <a class="navbar-brand" href="<%= expenses_sheet_index_path %>"><h3>Inicio</h3></a>
-    </div>
-
     <ul class="list-unstyled components">
         <li>
           <a id="showTableButton" onclick="$('.hideable').hide(); $('#expensesTable').show();">
@@ -16,7 +11,7 @@
           </a>
         </li>
         <li class="active">
-            <a  class="dropdown-toggle">Gráficas</a>
+            <a class="dropdown">Gráficas</a><!-- dropdown-toggle here was creating a uffo arrow -->
             <ul class="list-unstyled" id="pageGraphs">
                 <li>
                     <a id="showBarButton" onclick="$('.hideable').hide(); $('#graficBar').show();">Barras de Gastos</a>
@@ -50,10 +45,6 @@
             </ul>
         </li>
     </ul>
-    <div class="sidebar-header" style="margin-top: -20px">
-        <a class="nav-link"><%= current_user.show_name %></a>
-        <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'nav-link' %>
-    </div>
 </nav>
 <script>
     function hashCode(str) { // java String#hashCode

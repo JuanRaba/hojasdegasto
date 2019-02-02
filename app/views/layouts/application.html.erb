@@ -22,6 +22,7 @@
 
   <body>
     <% if (params[:controller] == 'expenses_sheet' and params[:action] == "show") %>
+      <%= render 'shared/navbar'%>
       <%= yield %>
     <%else%>
       <%= render 'shared/navbar'%>
