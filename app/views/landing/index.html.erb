@@ -1,2 +1,131 @@
-<h1>Landing#index</h1>
-<p>Find me in app/views/landing/index.html.erb</p>
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <a class="menu-toggle rounded" href="#">
+      <i class="fas fa-bars"></i>
+    </a>
+    <nav id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+          <a class="js-scroll-trigger" href="#page-top">HojasDeGasto</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a class="js-scroll-trigger" href="#services">Servicios</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a class="js-scroll-trigger" href="#contact">Contacto</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Header -->
+    <header class="masthead d-flex">
+      <div class="container text-center my-auto" style="margin-top: 10VW">
+        <h1 class="mb-1">¿Agotado de gestionar tus gastos?</h1>
+        <h3 class="mb-5">
+          <em>Nosotros lo hacemos por ti</em>
+        </h3>
+        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Descubre HojasDeGasto</a>
+      </div>      
+      <div class="overlay"></div>
+    </header>
+
+    <!-- About -->
+    <section class="content-section bg-light" id="about">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <h2>¡Te simplificamos la pega!</h2>            
+            <p class="lead mb-2">Hojas de gasto con categorias.</p>
+            <div class="videoWrapper">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/AsIub8Z67_k" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <p class="lead mb-2">¡Para compartir con tus amigos!</p>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#services">¿Que ofrecemos?</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="content-section bg-primary text-white text-center" id="services">
+      <div class="container">
+        <div class="content-section-heading">
+          <h1 class="text-secondary mb-0">Nuestros servicios</h1>
+          <h2 class="mb-5">La mejor calidad</h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+            <span class="service-icon rounded-circle mx-auto mb-3 mierdaboton">
+              <i class="icon-call-in"></i>
+            </span>
+            <h4>
+              <strong>Respuesta rapida</strong>
+            </h4>
+            <p class="text-faded mb-0">¡Estés donde estés!</p>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+            <span class="service-icon rounded-circle mx-auto mb-3 mierdaboton">
+              <i class="icon-pencil"></i>
+            </span>
+            <h4>
+              <strong>Siempre atentos</strong>
+            </h4>
+            <p class="text-faded mb-0">Con lo mejor para ti y los tuyos</p>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+            <span class="service-icon rounded-circle mx-auto mb-3 mierdaboton">
+              <i class="icon-like"></i>
+            </span>
+            <h4>
+              <strong>Favorita</strong>
+            </h4>
+            <p class="text-faded mb-0">Valorada
+              <i class="fa fa-heart"></i>
+              ¡En todo Chile!</p>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <span class="service-icon rounded-circle mx-auto mb-3 mierdaboton">
+              <i class="icon-diamond"></i>
+            </span>
+            <h4>
+              <strong>Mejora continua</strong>
+            </h4>
+            <p class="text-faded mb-0">Tambien tras su afiliación.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Callout -->
+    <section class="content-section callout" id="contact">
+      <div class="container text-center ocultable">
+        <h2 class="mx-auto mb-5">¡Descubre 
+          <em> HojasDeGasto!</em>
+          </h2>
+        <a class="btn btn-success btn-xl" href="<%=new_user_session_path%>" style="font-size: 4vh">Inicia sesión</a>
+        <a class="btn btn-primary btn-xl" href="<%=new_user_registration_path%>" style="font-size: 4vh">¡Registrate!</a>
+        <h1>Juan Rabanillo</h1>
+        <h3>Desafio Latam - RoR Full Stack Developer</h3>
+      </div>
+    </section>
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js "></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="https://blackrockdigital.github.io/startbootstrap-stylish-portfolio/js/stylish-portfolio.min.js"></script>
+
+  </body>
+
+</html>

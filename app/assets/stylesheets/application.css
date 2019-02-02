@@ -14,5 +14,6 @@
  *= require fullcalendar/dist/fullcalendar
  *= require_tree .
  *= stub active_admin
+ *= stub landing
  *= require_self
  */
