@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :categories
@@ -14,6 +15,8 @@ Rails.application.routes.draw do
     sessions: 'users/sessions', # acive_admin needs this
     registrations: 'users/registrations'
   }
-  root to: "expenses_sheet#index"
+  get 'landing/index'
+  #root to: "expenses_sheet#index"
+  root to: "landing#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

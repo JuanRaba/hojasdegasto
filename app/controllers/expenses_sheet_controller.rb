@@ -47,10 +47,10 @@ class ExpensesSheetController < ApplicationController
 
     respond_to do |format|
       if @expensesSheet.save
-        format.html { redirect_to root_path, notice: 'expensesSheet name was successfully changed.' }
+        format.html { redirect_to expenses_sheet_index_path, notice: 'expensesSheet name was successfully changed.' }
         format.json { render :show, status: :created, location: @expensesSheet }
       else
-        format.html { redirect_to root_path, alert: "newExpensesSheet name was not changed. #{@expensesSheet.errors.full_messages}" }
+        format.html { redirect_to expenses_sheet_index_path, alert: "newExpensesSheet name was not changed. #{@expensesSheet.errors.full_messages}" }
         format.json { render json: @expensesSheet.errors, status: :unprocessable_entity }
       end
     end
@@ -65,10 +65,10 @@ class ExpensesSheetController < ApplicationController
           user: current_user,
           expensesSheet: @newExpensesSheet
         )
-        format.html { redirect_to root_path, notice: 'newExpensesSheet was successfully created.' }
+        format.html { redirect_to expenses_sheet_index_path, notice: 'newExpensesSheet was successfully created.' }
         format.json { render :show, status: :created, location: @newExpensesSheet }
       else   
-        format.html { redirect_to root_path, alert: "newExpensesSheet was not created. #{@newExpensesSheet.errors.full_messages}" }
+        format.html { redirect_to expenses_sheet_index_path, alert: "newExpensesSheet was not created. #{@newExpensesSheet.errors.full_messages}" }
         format.json { render json: @newExpensesSheet.errors, status: :unprocessable_entity } 
       end
     end
@@ -78,7 +78,7 @@ class ExpensesSheetController < ApplicationController
     authorize! :destroy, @expensesSheet
     @expensesSheet.destroy
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'ExpensesSheet was successfully destroyed.' }
+      format.html { redirect_to expenses_sheet_index_path, notice: 'ExpensesSheet was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
