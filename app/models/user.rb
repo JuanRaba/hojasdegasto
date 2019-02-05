@@ -22,7 +22,7 @@ class User < ApplicationRecord
       self.avatar.present? ? self.avatar : 'https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg'
     else
       if self.avatar.present? 
-        self.avatar.length > 6? self.avatar : 'https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg'
+        self.avatar.length > 6? "#{self.avatar}.png" : self.avatar
       else
        'https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg'
       end
