@@ -5,6 +5,8 @@
 
 <div class="form-group">
   <%= f.label :avatar %><br />
+
+<% if Rails.env.development? %>
   <%=
     f.select(
       :avatar,
@@ -21,5 +23,7 @@
       ])
     )
   %>
-  <!%= f.text_field :avatar, class:"form-control" %>
+<% else %>
+  <%= f.text_field :avatar, class:"form-control" %>
+<% end %>
 </div>
