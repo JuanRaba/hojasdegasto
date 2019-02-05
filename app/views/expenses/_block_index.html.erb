@@ -21,7 +21,7 @@
     <ul class="user_comment">
       <!-- current #{user} avatar -->
       <div class="user_avatar">
-        <img src="<%=@expensesSheet.owner.show_avatar%>">
+        <img src="<%=asset_path @expensesSheet.owner.show_avatar%>">
         <%= @expensesSheet.owner.show_name %>
       </div><!-- the comment body --><div class="comment_body">
           Hola <%= current_user.show_name%>!!

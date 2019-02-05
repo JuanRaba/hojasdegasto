@@ -1,7 +1,7 @@
 <!-- current #{user} avatar -->
 <div class="user_avatar">
   <% if expense.user.present? %>
-    <img src="<%=expense.user.show_avatar%>">
+    <img src="<%=asset_path expense.user.show_avatar%>">
     <%= expense.user.show_name %>
   <% else %>
     <%= link_to 'Asumir',expenses_sheet_expense_claim_path(@expensesSheet, expense), class: "btn btn-primary" %>
