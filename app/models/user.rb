@@ -18,6 +18,10 @@ class User < ApplicationRecord
     self.name.present? ? self.name : self.email.split('@').first
   end
   def show_avatar
-    self.avatar.present? ? self.avatar : 'https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg'
+    if self.avatar.present? 
+      self.avatar.length > 6? self.avatar : 'https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg'
+    else
+     'https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg'
+   end
   end
 end
