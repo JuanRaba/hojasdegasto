@@ -51,9 +51,10 @@
       <!-- start user replies -->
       <% @expenses.each_with_index do |expense,index| %>
       <li>
-          <%= render expense %>      
+          <%= render expense %>    
       </li> 
       <% end %>
     </ul>
+  <a class="btn btn-info text-white" href="<%= @expensesSheet.id %>.csv">Obtener CSV para exportar a Excel</a>
   </div>
 </div>

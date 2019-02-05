@@ -36,6 +36,11 @@ class ExpensesSheetController < ApplicationController
     @categories = Category.all
     # asociation form
     @newAsociation = Asociation.new
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @expenses.to_csv, filename: "gastos-#{@expensesSheet.name}-#{Date.today}.csv" }
+    end
   end
 
   def edit
