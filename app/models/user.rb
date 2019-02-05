@@ -21,8 +21,9 @@ class User < ApplicationRecord
     if Rails.env.development?
       self.avatar.present? ? self.avatar : 'https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg'
     else
+      # as heroku needs file extension we need to do some fix as this result will be user in asset_path
       if self.avatar.present? 
-        self.avatar.length > 6? "#{self.avatar}.png" : self.avatar
+        self.avatar.length > 6? self.avatar : "#{self.avatar}.png"
       else
        'https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg'
       end
