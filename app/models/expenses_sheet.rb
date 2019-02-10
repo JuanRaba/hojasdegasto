@@ -28,7 +28,17 @@ class ExpensesSheet < ApplicationRecord
     # 0: 50 - (50/2) = +25
     # 50: 50 - (100/2) = 0
     # 100: 50 - (150/2) = -25
+
+    # WARNING this trigers 3 queries
+    puts '!!userBalance trigers 3 queries'
     userSpent(user) - (totalSpent / asociationLevel.to_f)
+  end
+
+  def userSummary(user, asociationLevelTaken, userSpentTaken)
+    summary = Hash.new
+    summary[:totalSpent] = totalSpent
+    summary[:userBalance] = userSpentTaken - (summary[:totalSpent] / asociationLevelTaken.to_f)
+    summary
   end
 
   def is_user_asociated(user)

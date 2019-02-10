@@ -27,14 +27,18 @@
           Hola <%= current_user.show_name%>!!
            <%= "Tenemos gastos planeados por un valor de: #{number_to_currency(@expensesSheet.totalUnpaid)}" if @expensesSheet.totalUnpaid > 0 %>
           <br>
-          En esta hojaDeGastos ha gastado <%= number_to_currency(@expensesSheet.userSpent(current_user), precision: 0) %>;
-          <% if @expensesSheet.asociationLevel > 1 %> 
-          y entre todos <%= @expensesSheet.asociationLevel %> hemos gastado <%= number_to_currency(@expensesSheet.totalSpent, precision: 0) %>,
-          <br>
-          <%= @expensesSheet.userBalance(current_user) < 0 ? 'SIENTO INFORMARLE que' : 'FELICIDADES' %>
-          su balance es <%= number_to_currency(@expensesSheet.userBalance(current_user), precision: 0) %>
+          <% @userSpent = @expensesSheet.userSpent(current_user) %>
+          En esta hojaDeGastos ha gastado <%= number_to_currency(@userSpent, precision: 0) %>;
+          <% @asociationLevel = @expensesSheet.asociationLevel %> 
+          <% if @asociationLevel > 1 %>
+            <% @summary = @expensesSheet.userSummary(current_user, @asociationLevel, @userSpent) %>
+            y entre los <%= @asociationLevel %>
+            hemos gastado <%= number_to_currency(@summary[:totalSpent], precision: 0) %>,
+            <br>
+            <%= @summary[:userBalance] < 0 ? 'SIENTO INFORMARLE que' : 'FELICIDADES' %>
+            su balance es <%= number_to_currency(@summary[:userBalance], precision: 0) %>
           <% else %>
-          esta hojaDeGastos no esta compartida.         
+            esta hojaDeGastos no esta compartida.         
           <% end %>
       </div>
       <!-- comments toolbar -->
