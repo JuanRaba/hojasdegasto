@@ -49,7 +49,7 @@
         </div><!-- inc. share/reply and love -->
       </div>
       <!-- start user replies -->
-      <% @expenses.each_with_index do |expense,index| %>
+      <% @expenses.preload(:user).preload(:category).each_with_index do |expense,index| %>
       <li>
           <%= render expense %>    
       </li> 

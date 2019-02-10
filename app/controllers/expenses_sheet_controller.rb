@@ -23,7 +23,7 @@ class ExpensesSheetController < ApplicationController
     @expenses = @expensesSheet.expenses.order("created_at DESC")
     # graph
     @expenses_by_category = Hash.new
-    @expenses.each do |e|
+    @expenses.preload(:category).each do |e|
       # SELECT category, sum(amount) FROM @expenses GROUP BY Category
       if @expenses_by_category[e.category.name] == nil
         @expenses_by_category[e.category.name] = e.amount
@@ -36,7 +36,6 @@ class ExpensesSheetController < ApplicationController
     @categories = Category.all
     # asociation form
     @newAsociation = Asociation.new
-
     respond_to do |format|
       format.html
       format.csv { send_data @expenses.to_csv, filename: "gastos-#{@expensesSheet.name}-#{Date.today}.csv" }
