@@ -21,7 +21,7 @@ class ExpensesSheetController < ApplicationController
   def show
     authorize! :read, @expensesSheet
     @expenses = @expensesSheet.expenses.order("created_at DESC")
-    # graph
+    # graficDoughnut
     @expenses_by_category = Hash.new
     @expenses.preload(:category).each do |e|
       # SELECT category, sum(amount) FROM @expenses GROUP BY Category
@@ -31,6 +31,11 @@ class ExpensesSheetController < ApplicationController
         @expenses_by_category[e.category.name] += e.amount
       end
     end
+    # graficPie
+    @expenses_by_asociation = Hash.new
+    @expensesSheet.asociations.preload(:user).each do |a|
+      @expenses_by_asociation[a.user.show_name] = @expensesSheet.userSpent(a.user)
+    end 
     # expenses form
     @newExpense = Expense.new
     @categories = Category.all

@@ -5,9 +5,9 @@
   var myChart = new Chart(ctx, {
       type: 'pie',
       data: {
-          labels: <%=@expensesSheet.asociations.map { |a| a.user.show_name }.to_json.html_safe%>,
+          labels: <%= @expenses_by_asociation.keys.to_json.html_safe %>,
           datasets: [{
-              data: <%=@expensesSheet.asociations.map { |a| @expensesSheet.userSpent(a.user) }%>,
+              data: <%= @expenses_by_asociation.values %>,
               backgroundColor: [
                   'rgba(255, 99, 132, 1)',
                   'rgba(99, 255, 132, 1)',
