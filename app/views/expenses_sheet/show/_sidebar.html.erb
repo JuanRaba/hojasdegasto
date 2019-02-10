@@ -30,7 +30,7 @@
         <li class="active">
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">Colaboradores: <%= @expensesSheet.asociationLevel %></a>
             <ul class="list-unstyled" id="pageSubmenu">
-                <% @expensesSheet.asociations.each do |asociation| %>
+                <% @expensesSheet.asociations.preload(:user).each do |asociation| %>
                   <li>
                     <p>
                         <%= asociation.user.show_name %>
